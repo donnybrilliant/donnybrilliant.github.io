@@ -1,3 +1,5 @@
+import "@fontsource/silkscreen";
+import "@fontsource/dosis";
 import "./style.css";
 
 // DOM Elements
