@@ -1,0 +1,338 @@
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200;400;500&family=Silkscreen&display=swap");
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Dosis", sans-serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 200;
+  /* overflow-x: hidden; */
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  height: 10vh;
+  padding: 1rem;
+}
+
+#nav-toggle {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #101010;
+}
+
+#navigation {
+  display: none;
+  list-style-type: none;
+  gap: 2rem;
+  font-size: 2rem;
+}
+
+#navigation.active {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  width: 100vw;
+  font-size: 4rem;
+  top: 10dvh;
+  background-color: white;
+  left: 0;
+  height: 90dvh;
+  overflow: none;
+  gap: 6rem;
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+
+/* 
+@media screen and (max-width: 736px) {
+  #navigation {
+    display: none;
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    flex-direction: column;
+    height: 90vh;
+    background-color: white;
+    width: 100vw;
+    margin: 0 auto;
+    font-size: 3rem;
+  }
+
+  #navigation > li {
+    margin: 2rem;
+  }
+}
+
+@media screen and (min-width: 735px) {
+  header {
+    justify-content: end;
+  }
+
+  #nav-toggle {
+    display: none;
+  }
+} */
+
+@media (min-width: 735px) {
+  #navigation {
+    display: flex;
+  }
+
+  header {
+    justify-content: end;
+  }
+
+  #nav-toggle {
+    display: none;
+  }
+}
+
+a {
+  font-family: "Silkscreen", sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+a.active {
+  text-decoration: underline;
+  text-underline-offset: 0.5rem;
+}
+
+main {
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  height: 100vh;
+  width: 100vw;
+  scroll-padding-top: 10vh;
+}
+
+section {
+  scroll-snap-align: start;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+section > :first-child {
+  margin-top: 3rem;
+}
+
+#home {
+  background-color: #ff595e;
+}
+
+#home > * {
+  margin: 1rem;
+}
+
+/* #home img {
+  width: 20vw;
+}
+
+#home div {
+  width: 40vw;
+}
+*/
+
+#home div p {
+  height: 10vh;
+}
+
+#projects {
+  background-color: #ffd35c;
+  padding: 1rem;
+  gap: 3rem;
+  padding-bottom: 20vh;
+}
+
+#projects p {
+  max-width: 90%;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+article {
+  background-color: white;
+  padding: 1rem;
+}
+
+article h3 {
+  padding-bottom: 1rem;
+}
+
+article img {
+  width: 100%;
+  height: 30vh;
+  object-fit: cover;
+  object-position: top;
+  transition: object-position 4s ease;
+}
+
+article img:hover {
+  object-position: bottom;
+}
+
+article div {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 2rem;
+}
+
+article p {
+  font-family: "Silkscreen", sans-serif;
+  margin: 1rem;
+}
+
+article p span {
+  font-family: "Dosis", sans-serif;
+}
+
+#about {
+  background-color: #a1db43;
+  justify-content: space-between;
+  max-height: 100vh;
+}
+
+#contact {
+  background-color: #65c9ff;
+  justify-content: space-between;
+  max-height: 100vh;
+  font-size: 2rem;
+  line-height: 4rem;
+}
+
+#contact ul {
+  list-style-type: none;
+}
+
+.icons {
+  margin-inline: 1rem;
+}
+
+.icons i {
+  font-size: 3rem;
+  padding: 1rem;
+}
+
+.dead-space {
+  height: 200px;
+  visibility: hidden;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+h1 {
+  margin-left: -1rem;
+}
+
+h1,
+h2,
+h4,
+h5,
+h6 {
+  font-family: "Silkscreen", sans-serif;
+  font-size: 3rem;
+  line-height: 4rem;
+}
+
+h3 {
+  font-family: "Silkscreen", sans-serif;
+}
+
+.hover {
+  font-weight: 400;
+}
+
+.hover:last-of-type {
+  font-weight: 200;
+}
+
+.hover:hover {
+  text-shadow: 0 0.02rem #101010, 0 -0.02rem #101010, 0.02rem 0 #101010,
+    -0.02rem 0 #101010;
+}
+
+span.random > a {
+  font-family: "Dosis", sans-serif;
+  cursor: pointer;
+}
+
+p.subtle {
+  font-family: "Silkscreen", sans-serif;
+  color: #a1db43;
+}
+
+p.subtle:hover {
+  color: #afff2f;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Silkscreen", sans-serif;
+}
+
+.copyright {
+  font-family: "Dosis", sans-serif;
+  margin-inline: 0.5rem;
+}
+
+@media screen and (min-width: 772px) {
+  #home {
+    flex-direction: row-reverse;
+  }
+  h1 {
+    margin-left: -1.5rem;
+  }
+  .cards-container {
+    flex-direction: row;
+  }
+}
+
+@media screen and (min-width: 1152px) {
+  .cards-container {
+    margin-inline: 3rem;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 771px) {
+  .cards-container {
+    margin-inline: 3rem;
+  }
+}
+
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
