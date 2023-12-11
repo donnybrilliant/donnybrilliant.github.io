@@ -110,15 +110,6 @@ section > :first-child {
   margin: 1rem;
 }
 
-/* #home img {
-  width: 20vw;
-}
-
-#home div {
-  width: 40vw;
-}
-*/
-
 #home div p {
   height: 10dvh;
 }
@@ -128,10 +119,6 @@ section > :first-child {
   gap: 3rem;
   padding-bottom: 20vh;
 }
-
-/* #projects p {
-  max-width: 90%;
-} */
 
 .cards-container {
   display: grid;
@@ -195,7 +182,6 @@ section > :first-child {
   justify-content: space-between;
   max-height: 100vh;
   font-size: 2rem;
-  line-height: 4rem;
 }
 
 #contact p {
@@ -204,6 +190,10 @@ section > :first-child {
 
 #contact ul {
   list-style-type: none;
+}
+
+#contact li {
+  margin-block: 2rem;
 }
 
 .icons {
