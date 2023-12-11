@@ -8,6 +8,7 @@ const navToggle = document.querySelector("#nav-toggle");
 const navIcon = document.querySelector("#nav-icon");
 const navItems = document.querySelectorAll("#navigation li a");
 const sections = document.querySelectorAll("section");
+const typeContainer = document.querySelector("#home div p");
 
 // Toggle navigation menu
 function toggleMenu() {
@@ -53,6 +54,28 @@ function onScroll() {
     }
   });
 }
+
+// TypeWriter message
+var messageArray = [
+  `My name is <span class="hover">Daniel</span> and I am a
+    <span class="hover">front end developer</span>. <br />I like
+    <span class="hover random"><a href="https://ragerrr.netlify.app/" target="_blank">random
+            stuff</a></span>`,
+];
+
+// TypeWriter variables
+var textPosition = 0;
+var speed = 30;
+
+// Type out the message in the typeContainer
+function typeWriter() {
+  typeContainer.innerHTML =
+    messageArray[0].substring(0, textPosition) + `<span class="blink">_</span>`;
+  if (textPosition++ != messageArray[0].length) setTimeout(typeWriter, speed);
+}
+
+// Event listener for typeWriter effect
+window.addEventListener("load", typeWriter);
 
 // Event listener for scroll
 window.addEventListener("scroll", onScroll);
