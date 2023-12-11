@@ -30,12 +30,14 @@ navItems.forEach((item) => {
 
 // Scrollspy functionality
 function onScroll() {
+  const headerHeight = document.querySelector("header").offsetHeight;
   let currentSection = "";
 
   sections.forEach((section) => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
-    if (scrollY >= sectionTop - sectionHeight / 3) {
+    const sectionTop = section.offsetTop - headerHeight;
+    const sectionBottom = sectionTop + section.offsetHeight;
+
+    if (scrollY >= sectionTop && scrollY < sectionBottom) {
       currentSection = section.getAttribute("id");
     }
   });
