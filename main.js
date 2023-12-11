@@ -5,6 +5,7 @@ const navigation = document.querySelector("#navigation");
 const navToggle = document.querySelector("#nav-toggle");
 const navIcon = document.querySelector("#nav-icon");
 const navItems = document.querySelectorAll("#navigation li a");
+const sections = document.querySelectorAll("section");
 
 // Toggle navigation menu
 function toggleMenu() {
@@ -15,32 +16,44 @@ function toggleMenu() {
   navIcon.classList.toggle("fa-close");
 }
 
-// Remove active class from all navigation items
-function removeActiveClasses() {
-  navItems.forEach((item) => {
-    item.classList.remove("active");
-    item.removeAttribute("aria-current");
-  });
-}
-
-// Set a navigation item as active
-function setActiveNavItem(item) {
-  removeActiveClasses();
-  item.classList.add("active");
-  item.setAttribute("aria-current", "page");
-}
-
-// Event listeners
+// Event listener for navigation toggle
 navToggle.addEventListener("click", toggleMenu);
+
+// Close the navigation menu when a link is clicked
 navItems.forEach((item) => {
   item.addEventListener("click", () => {
     if (navigation.classList.contains("active")) {
-      toggleMenu(); // Close the menu if it's open
+      toggleMenu();
     }
-    setActiveNavItem(item);
   });
 });
 
+// Scrollspy functionality
+function onScroll() {
+  let currentSection = "";
+
+  sections.forEach((section) => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    if (scrollY >= sectionTop - sectionHeight / 3) {
+      currentSection = section.getAttribute("id");
+    }
+  });
+
+  navItems.forEach((link) => {
+    link.classList.remove("active");
+    link.removeAttribute("aria-current");
+    if (link.getAttribute("href").includes(currentSection)) {
+      link.classList.add("active");
+      link.setAttribute("aria-current", "page");
+    }
+  });
+}
+
+// Event listener for scroll
+window.addEventListener("scroll", onScroll);
+
+// Initialize image transition after page load
 window.addEventListener("load", () => {
   document.querySelectorAll(".project-card img").forEach((img) => {
     img.style.transition = "object-position 4s ease";
