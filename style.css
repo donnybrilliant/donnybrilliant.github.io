@@ -17,6 +17,10 @@
   padding: 0;
 }
 
+/* html {
+  scroll-behavior: smooth;
+} */
+
 body {
   font-family: var(--primary-font);
   font-size: 1.2rem;
@@ -129,7 +133,6 @@ header {
 }
 
 section {
-  scroll-snap-align: start;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
@@ -330,6 +333,7 @@ footer {
   display: none;
   font-size: 0.8rem;
   line-height: 1.6rem;
+  overflow-x: auto;
 }
 
 #package-json.active {
