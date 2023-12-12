@@ -12,6 +12,11 @@ const sections = document.querySelectorAll("section");
 const typeContainer = document.querySelector("#home div p");
 const togglePackageJson = document.querySelector("#toggle-package-json");
 const packageJson = document.querySelector("#package-json");
+const toggleTerminal = document.querySelector("#toggle-terminal");
+const terminalElement = document.querySelector("#terminal");
+
+let fileSystemData = null;
+let isTerminalInitialized = false;
 
 // Toggle navigation menu
 const toggleMenu = () => {
@@ -21,9 +26,6 @@ const toggleMenu = () => {
   navIcon.classList.toggle("fa-bars");
   navIcon.classList.toggle("fa-close");
 };
-
-// Event listener for navigation toggle
-navToggle.addEventListener("click", toggleMenu);
 
 // Close the navigation menu when a link is clicked
 navItems.forEach((item) => {
@@ -64,10 +66,9 @@ const speed = 30;
 
 // TypeWriter message
 let messageArray = [
-  `My name is <span class="hover">Daniel</span>, I am a
-    <span class="hover">front end developer</span>. <br />I like
-    <span class="hover random"><a href="https://ragerrr.netlify.app/" target="_blank">random
-            stuff</a></span>`,
+  `My name is Daniel, I am a web developer. <br />
+ Check out my <a href="#toggle-package-json">package.json</a> or browse my GitHub Projects through the <a href="#toggle-terminal">terminal</a>. <br />
+ I like <a href="https://ragerrr.netlify.app/" target="_blank">random stuff</a>`,
 ];
 
 // Type out the message in the typeContainer
@@ -95,27 +96,7 @@ async function fetchData() {
   }
 }
 
-// Call fetchData when the window loads
-window.addEventListener("load", fetchData);
-
-// Event listener for typeWriter effect
-window.addEventListener("load", typeWriter);
-
-// Event listener for scroll
-window.addEventListener("scroll", onScroll);
-
-// Initialize image transition after page load
-window.addEventListener("load", () => {
-  document.querySelectorAll(".project-card img").forEach((img) => {
-    img.style.transition = "object-position 4s ease";
-  });
-});
-
-// Event listener for package.json toggle
-togglePackageJson.addEventListener("click", () => {
-  packageJson.classList.toggle("active");
-});
-
+// Function to fetch file system data for terminal
 async function fetchFileSystemData() {
   try {
     const response = await fetch("https://packagejson.onrender.com/files", {
@@ -124,15 +105,42 @@ async function fetchFileSystemData() {
         "Content-Type": "application/json",
       },
     });
-    return await response.json();
+    fileSystemData = await response.json();
+    return fileSystemData;
   } catch (error) {
+    fileSystemData = null;
     return null;
   }
 }
 
-async function initializeTerminal() {
-  const fileSystemData = await fetchFileSystemData();
-  initTerminal("#terminal", fileSystemData);
-}
+// Initialize terminal on toggler click
+const toggleTerminalVisibility = () => {
+  terminalElement.classList.toggle("active");
+  if (!isTerminalInitialized) {
+    initTerminal("#terminal", fileSystemData);
+    isTerminalInitialized = true;
+  }
+};
 
-initializeTerminal();
+// Event listeners
+navToggle.addEventListener("click", toggleMenu);
+navItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    if (navigation.classList.contains("active")) {
+      toggleMenu();
+    }
+  });
+});
+window.addEventListener("scroll", onScroll);
+window.addEventListener("load", fetchData);
+window.addEventListener("load", fetchFileSystemData);
+window.addEventListener("load", typeWriter);
+window.addEventListener("load", () => {
+  document.querySelectorAll(".project-card img").forEach((img) => {
+    img.style.transition = "object-position 4s ease";
+  });
+});
+togglePackageJson.addEventListener("click", () => {
+  packageJson.classList.toggle("active");
+});
+toggleTerminal.addEventListener("click", toggleTerminalVisibility);
