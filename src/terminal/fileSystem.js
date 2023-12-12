@@ -13,10 +13,10 @@ function populateFileSystem(data) {
     }
   } else {
     // Fallback: Create default directories and files
-    if (!fileData.hasOwnProperty("home")) {
+    if (!Object.prototype.hasOwnProperty.call(fileData, "home")) {
       fileData.home = {};
     }
-    if (!fileData.home.hasOwnProperty("user")) {
+    if (!Object.prototype.hasOwnProperty.call(fileData.home, "user")) {
       fileData.home.user = {
         document1: "This is the content of document1.",
         document2: "Another content here for document2.",

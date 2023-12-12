@@ -1,10 +1,10 @@
 import { Terminal } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
 import { WebLinksAddon } from "xterm-addon-web-links";
-import "../node_modules/xterm/css/xterm.css";
+import "xterm/css/xterm.css";
 import processCommand from "./commandProcessor.js";
 import handleKeyInput from "./keyInputHandler.js";
-import ascii from "./ascii";
+import ascii from "./ascii.js";
 import { populateFileSystem } from "./fileSystem.js";
 
 export const term = new Terminal();

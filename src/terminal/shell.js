@@ -4,7 +4,7 @@ import {
   getCurrentPath,
   setName,
 } from "./fileSystem.js";
-import { ANSI_COLORS } from "./colors";
+import { ANSI_COLORS } from "./colors.js";
 import { term } from "./index.js";
 
 /**

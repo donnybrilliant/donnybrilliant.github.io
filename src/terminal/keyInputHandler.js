@@ -1,6 +1,6 @@
 import { stopMatrix } from "./random";
 import { getName } from "./fileSystem";
-import { isInEditMode, appendToEditedContent } from "./edit";
+import { isInEditMode } from "./edit";
 import { stopSnakeGame } from "./snake";
 
 // Buffer to hold the current command being typed by the user.

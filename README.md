@@ -22,7 +22,7 @@ Keeping it simple.
 ## Further improvements
 
 - Subtle animations
-- Avatar animation
+- Terminal npm package
 - Load it up with easter eggs
 
 ## Contributing

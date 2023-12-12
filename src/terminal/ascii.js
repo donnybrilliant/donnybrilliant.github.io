@@ -9,7 +9,7 @@ export default function ascii(term) {
     "  \\__\\___|_|  |_| |_| |_|_|_| |_|\\__,_|_(_)___/_| |_|",
   ];
 
-  const ASCII_TERMINAL1 = [
+  /*   const ASCII_TERMINAL1 = [
     "▄▄▄█████▓▓█████  ██▀███   ███▄ ▄███▓ ██▓ ███▄    █  ▄▄▄       ██▓    ",
     "▓  ██▒ ▓▒▓█   ▀ ▓██ ▒ ██▒▓██▒▀█▀ ██▒▓██▒ ██ ▀█   █ ▒████▄    ▓██▒    ",
     "▒ ▓██░ ▒░▒███   ▓██ ░▄█ ▒▓██    ▓██░▒██▒▓██  ▀█ ██▒▒██  ▀█▄  ▒██░    ",
@@ -20,7 +20,7 @@ export default function ascii(term) {
     "  ░         ░     ░░   ░ ░      ░    ▒ ░   ░   ░ ░   ░   ▒     ░ ░   ",
     "            ░  ░   ░            ░    ░           ░       ░  ░    ░  ░",
     "                                                                     ",
-  ];
+  ]; */
 
   term.clear();
 
@@ -47,7 +47,7 @@ export default function ascii(term) {
           setTimeout(() => {
             term.clear();
             term.write("\x1B[1;1H"); // Reset cursor to top-left
-            term.write("Welcome to the mock terminal.\r\n");
+            term.write("Welcome to the terminal.\r\n");
             term.write("Type 'help' to get started.\r\n\r\n");
             term.write("$ ");
           }, 0); // Reduced post-animation wait time to 800ms
