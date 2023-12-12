@@ -7,9 +7,12 @@
     "dev": "vite",
     "host": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix"
   },
   "devDependencies": {
+    "eslint": "^8.55.0",
     "vite": "^5.0.0"
   },
   "dependencies": {
