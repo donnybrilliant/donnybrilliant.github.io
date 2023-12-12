@@ -13,6 +13,15 @@ import { typeWriter } from "./src/typewriter.js";
 import { fetchData, fetchFileSystemData } from "./src/api.js";
 import { toggleTerminalVisibility } from "./src/terminalToggle.js";
 
+// Import avatar images
+import avatar0 from "./assets/avatars/avatar.svg";
+import avatar1 from "./assets/avatars/avatar1.svg";
+import avatar2 from "./assets/avatars/avatar2.svg";
+import avatar3 from "./assets/avatars/avatar3.svg";
+import avatar4 from "./assets/avatars/avatar4.svg";
+import avatar5 from "./assets/avatars/avatar5.svg";
+import avatar6 from "./assets/avatars/avatar6.svg";
+
 // DOM Elements
 const navigation = document.querySelector("#navigation");
 const navToggle = document.querySelector("#nav-toggle");
@@ -25,14 +34,7 @@ const packageJson = document.querySelector("#package-json");
 const toggleTerminal = document.querySelector("#toggle-terminal");
 const terminalElement = document.querySelector("#terminal");
 const avatar = document.getElementById("avatar");
-const avatars = [
-  "avatar.svg",
-  "avatar1.svg",
-  "avatar2.svg",
-  "avatar3.svg",
-  "avatar4.svg",
-  "avatar5.svg",
-];
+const avatars = [avatar0, avatar1, avatar2, avatar3, avatar4, avatar5, avatar6];
 
 // Initialize modules
 setupNavItems(navItems, navigation, navToggle, navIcon);

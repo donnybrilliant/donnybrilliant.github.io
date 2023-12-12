@@ -3,10 +3,7 @@ export function manualAvatarChange(avatar, startRegularInterval, avatars) {
   let switchCount = 0;
   const totalSwitches = 6;
   const manualChangeInterval = setInterval(() => {
-    avatar.src =
-      switchCount % 2 === 0
-        ? "./assets/avatars/avatar.svg"
-        : "./assets/avatars/avatar6.svg";
+    avatar.src = switchCount % 2 === 0 ? avatars[0] : avatars[5];
     switchCount++;
     if (switchCount >= totalSwitches) {
       clearInterval(manualChangeInterval);
@@ -33,7 +30,7 @@ export function updateAvatar(
   direction,
   updateIndexDirection
 ) {
-  avatar.src = `./assets/avatars/${avatars[currentIndex]}`;
+  avatar.src = avatars[currentIndex];
   currentIndex += direction;
   if (currentIndex >= avatars.length - 1 || currentIndex <= 0) {
     direction *= -1;
