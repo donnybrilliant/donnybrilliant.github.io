@@ -10,8 +10,8 @@
 
 My personal portfolio.
 Keeping it simple.
-It uses a crawler to list all dependencies im using on GitHub.
-And also a fun little terminal where you can browse my repos.
+It uses a [packagejson](https://github.com/donnybrilliant/packagejson) to list all dependencies im using on GitHub.
+And also a fun little terminal, built upon [xterm](https://xtermjs.org/) where you can browse my repos.
 
 ## Built With
 
