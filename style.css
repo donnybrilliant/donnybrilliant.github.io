@@ -1,12 +1,12 @@
 :root {
   --primary-font: "Dosis", sans-serif;
   --secondary-font: "Silkscreen", sans-serif;
-  --primary-color: #ff595e;
-  --secondary-color: #ffd35c;
-  --tertiary-color: #a1db43;
-  --quad-color: #65c9ff;
-  --white-color: #fff;
-  --black-color: #000;
+  --primary-color: hsl(358, 100%, 67%);
+  --secondary-color: hsl(44, 100%, 68%);
+  --tertiary-color: hsl(83, 68%, 56%);
+  --quad-color: hsl(201, 100%, 70%);
+  --white-color: hsl(0, 0%, 100%);
+  --black-color: hsl(0, 0%, 0%);
 }
 
 *,
@@ -302,8 +302,15 @@ section > :first-child {
 }
 
 footer {
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 1rem;
   font-family: var(--secondary-font);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--white-color);
 }
 
 .copyright {
