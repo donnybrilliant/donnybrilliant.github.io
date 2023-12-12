@@ -34,12 +34,13 @@ const avatars = [
   "avatar5.svg",
 ];
 
-let fileSystemData = null;
-let isTerminalInitialized = false;
-
 // Initialize modules
 setupNavItems(navItems, navigation, navToggle, navIcon);
 setupScrollspy(sections, navItems);
+
+// Terminal variables
+let fileSystemData = null;
+let isTerminalInitialized = false;
 
 // TypeWriter variables
 let textPosition = 0;
