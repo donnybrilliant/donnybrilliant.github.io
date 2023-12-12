@@ -280,3 +280,18 @@ footer {
     opacity: 0;
   }
 }
+
+#toggle-package-json {
+  cursor: pointer;
+  margin-top: 10vh;
+}
+
+#package-json {
+  display: none;
+  font-size: 0.8rem;
+  line-height: 1.6rem;
+}
+
+#package-json.active {
+  display: flex;
+}

@@ -9,15 +9,17 @@ const navIcon = document.querySelector("#nav-icon");
 const navItems = document.querySelectorAll("#navigation li a");
 const sections = document.querySelectorAll("section");
 const typeContainer = document.querySelector("#home div p");
+const togglePackageJson = document.querySelector("#toggle-package-json");
+const packageJson = document.querySelector("#package-json");
 
 // Toggle navigation menu
-function toggleMenu() {
+const toggleMenu = () => {
   const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
   navToggle.setAttribute("aria-expanded", !isExpanded);
   navigation.classList.toggle("active");
   navIcon.classList.toggle("fa-bars");
   navIcon.classList.toggle("fa-close");
-}
+};
 
 // Event listener for navigation toggle
 navToggle.addEventListener("click", toggleMenu);
@@ -32,7 +34,7 @@ navItems.forEach((item) => {
 });
 
 // Scrollspy functionality
-function onScroll() {
+const onScroll = () => {
   const headerHeight = document.querySelector("header").offsetHeight;
   let currentSection = "";
 
@@ -53,26 +55,47 @@ function onScroll() {
       link.setAttribute("aria-current", "page");
     }
   });
-}
+};
+
+// TypeWriter variables
+let textPosition = 0;
+const speed = 30;
 
 // TypeWriter message
-var messageArray = [
-  `My name is <span class="hover">Daniel</span> and I am a
+let messageArray = [
+  `My name is <span class="hover">Daniel</span>, I am a
     <span class="hover">front end developer</span>. <br />I like
     <span class="hover random"><a href="https://ragerrr.netlify.app/" target="_blank">random
             stuff</a></span>`,
 ];
 
-// TypeWriter variables
-var textPosition = 0;
-var speed = 30;
-
 // Type out the message in the typeContainer
-function typeWriter() {
+const typeWriter = () => {
   typeContainer.innerHTML =
     messageArray[0].substring(0, textPosition) + `<span class="blink">_</span>`;
   if (textPosition++ != messageArray[0].length) setTimeout(typeWriter, speed);
+};
+
+// Function to fetch and display package.json
+async function fetchData() {
+  const url = "https://packagejson.onrender.com/package.json";
+  const loadingMessage = "Loading...";
+  const errorMessage = "Failed to load data. Try again";
+
+  // Display loading message
+  packageJson.textContent = loadingMessage;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    packageJson.textContent = JSON.stringify(data, null, 2);
+  } catch (error) {
+    packageJson.textContent = errorMessage;
+  }
 }
+
+// Call fetchData when the window loads
+window.addEventListener("load", fetchData);
 
 // Event listener for typeWriter effect
 window.addEventListener("load", typeWriter);
@@ -85,4 +108,9 @@ window.addEventListener("load", () => {
   document.querySelectorAll(".project-card img").forEach((img) => {
     img.style.transition = "object-position 4s ease";
   });
+});
+
+// Event listener for package.json toggle
+togglePackageJson.addEventListener("click", () => {
+  packageJson.classList.toggle("active");
 });
