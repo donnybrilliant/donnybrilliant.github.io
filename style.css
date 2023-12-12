@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200;400;500&family=Silkscreen&display=swap");
-
 *,
 *:before,
 *:after {
@@ -238,19 +236,6 @@ h3 {
   font-size: 2rem;
 }
 
-.hover {
-  font-weight: 400;
-}
-
-.hover:last-of-type {
-  font-weight: 200;
-}
-
-.hover:hover {
-  text-shadow: 0 0.02rem #101010, 0 -0.02rem #101010, 0.02rem 0 #101010,
-    -0.02rem 0 #101010;
-}
-
 span.random > a {
   font-family: "Dosis", sans-serif;
   cursor: pointer;
@@ -277,7 +262,7 @@ footer {
   margin-inline: 0.5rem;
 }
 
-@media screen and (min-width: 772px) {
+@media (min-width: 772px) {
   #home {
     flex-direction: row-reverse;
   }
@@ -294,4 +279,19 @@ footer {
   50% {
     opacity: 0;
   }
+}
+
+#toggle-package-json {
+  cursor: pointer;
+  margin-top: 10vh;
+}
+
+#package-json {
+  display: none;
+  font-size: 0.8rem;
+  line-height: 1.6rem;
+}
+
+#package-json.active {
+  display: flex;
 }
