@@ -11,7 +11,8 @@
 My personal portfolio.
 Keeping it simple.
 It uses a [packagejson](https://github.com/donnybrilliant/packagejson) to list all dependencies im using on GitHub.
-And also a fun little terminal, built upon [xterm](https://xtermjs.org/) where you can browse my repos.
+It also features a fun little terminal, built upon [xterm](https://xtermjs.org/) where you can browse my repos.
+And a small slider to adjust the theme colors.
 
 ## Built With
 
