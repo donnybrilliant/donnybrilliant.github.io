@@ -1,4 +1,5 @@
-import { getCurrentDir } from "./fileSystem";
+import { getCurrentDir } from "./fileSystem.js";
+
 let currentEditingFile = null;
 let originalFileContent = "";
 let inEditMode = false;
