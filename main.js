@@ -14,6 +14,15 @@ const togglePackageJson = document.querySelector("#toggle-package-json");
 const packageJson = document.querySelector("#package-json");
 const toggleTerminal = document.querySelector("#toggle-terminal");
 const terminalElement = document.querySelector("#terminal");
+const avatar = document.getElementById("avatar");
+const avatars = [
+  "avatar.svg",
+  "avatar1.svg",
+  "avatar2.svg",
+  "avatar3.svg",
+  "avatar4.svg",
+  "avatar5.svg",
+];
 
 let fileSystemData = null;
 let isTerminalInitialized = false;
@@ -59,6 +68,42 @@ const onScroll = () => {
     }
   });
 };
+
+// Avatar variables
+let currentIndex = 0;
+let direction = 1;
+
+// Function to switch between avatar0 and avatar6
+function manualAvatarChange() {
+  let switchCount = 0;
+  const totalSwitches = 6; // Total number of times to switch
+  const manualChangeInterval = setInterval(() => {
+    avatar.src =
+      switchCount % 2 === 0
+        ? "./assets/avatars/avatar.svg"
+        : "./assets/avatars/avatar6.svg";
+    switchCount++;
+    if (switchCount >= totalSwitches) {
+      clearInterval(manualChangeInterval);
+      startRegularInterval();
+    }
+  }, 500); // Time between manual changes
+}
+
+// Function to start regular interval for avatar changes
+function startRegularInterval() {
+  currentIndex = 0; // Reset the index if needed
+  setInterval(updateAvatar, 800); // Regular interval
+}
+
+// Function to update the avatar image
+function updateAvatar() {
+  avatar.src = `./assets/avatars/${avatars[currentIndex]}`;
+  currentIndex += direction;
+  if (currentIndex >= avatars.length - 1 || currentIndex <= 0) {
+    direction *= -1;
+  }
+}
 
 // TypeWriter variables
 let textPosition = 0;
@@ -144,3 +189,15 @@ togglePackageJson.addEventListener("click", () => {
   packageJson.classList.toggle("active");
 });
 toggleTerminal.addEventListener("click", toggleTerminalVisibility);
+
+// Display avatar6 on hover
+avatar.addEventListener("mouseover", () => {
+  avatar.src = "./assets/avatars/avatar6.svg";
+});
+
+avatar.addEventListener("mouseout", () => {
+  updateAvatar();
+});
+
+// Start with manual changes
+manualAvatarChange();
