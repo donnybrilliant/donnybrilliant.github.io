@@ -12,6 +12,7 @@ import {
 import { typeWriter } from "./src/typewriter.js";
 import { fetchData, fetchFileSystemData } from "./src/api.js";
 import { toggleTerminalVisibility } from "./src/terminalToggle.js";
+import { initThemeSlider } from "./src/theme.js";
 
 // Import avatar images
 import avatar0 from "./assets/avatars/avatar.svg";
@@ -88,6 +89,7 @@ window.addEventListener("load", () => {
   fetchData(packageJson);
   fetchFileSystemData().then((data) => (fileSystemData = data));
   typeWriter(typeContainer, messageArray, textPosition, speed);
+  initThemeSlider();
   manualAvatarChange(avatar, startRegularInterval, avatars);
   document.querySelectorAll(".project-card img").forEach((img) => {
     img.style.transition = "object-position 4s ease";
