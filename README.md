@@ -10,6 +10,8 @@
 
 My personal portfolio.
 Keeping it simple.
+It uses a crawler to list all dependencies im using on GitHub.
+And also a fun little terminal where you can browse my repos.
 
 ## Built With
 
@@ -21,9 +23,9 @@ Keeping it simple.
 
 ## Further improvements
 
-- Subtle animations
+- Self hosted icons
 - Terminal npm package
-- Load it up with easter eggs
+- More fun stuff
 
 ## Contributing
 
