@@ -17,10 +17,6 @@
   padding: 0;
 }
 
-/* html {
-  scroll-behavior: smooth;
-} */
-
 body {
   font-family: var(--primary-font);
   font-size: 1.2rem;
@@ -302,15 +298,23 @@ section > :first-child {
 }
 
 footer {
-  display: flex;
-  justify-content: space-between;
-  padding-inline: 1rem;
+  text-align: center;
   font-family: var(--secondary-font);
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: var(--white-color);
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 400px) {
+  footer {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 1rem;
+    padding-bottom: 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--white-color);
+  }
 }
 
 .copyright {
