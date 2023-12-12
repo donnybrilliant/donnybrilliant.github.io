@@ -72,10 +72,7 @@ toggleTerminal.addEventListener("click", () =>
     fileSystemData
   )
 );
-avatar.addEventListener(
-  "mouseover",
-  () => (avatar.src = "./assets/avatars/avatar6.svg")
-);
+avatar.addEventListener("mouseover", () => (avatar.src = avatar6));
 
 avatar.addEventListener("mouseout", () =>
   updateAvatar(avatar, avatars, currentIndex, direction)

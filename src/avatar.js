@@ -3,7 +3,7 @@ export function manualAvatarChange(avatar, startRegularInterval, avatars) {
   let switchCount = 0;
   const totalSwitches = 6;
   const manualChangeInterval = setInterval(() => {
-    avatar.src = switchCount % 2 === 0 ? avatars[0] : avatars[5];
+    avatar.src = switchCount % 2 === 0 ? avatars[0] : avatars[6];
     switchCount++;
     if (switchCount >= totalSwitches) {
       clearInterval(manualChangeInterval);
