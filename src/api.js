@@ -1,4 +1,4 @@
-// src/api.js
+// Function to fetch package.json data from github repos
 export async function fetchData(packageJson) {
   const url = "https://packagejson.onrender.com/package.json";
   const loadingMessage = "Loading...";
@@ -15,6 +15,7 @@ export async function fetchData(packageJson) {
   }
 }
 
+// Function to fetch file system data from github repos
 export async function fetchFileSystemData() {
   try {
     const response = await fetch("https://packagejson.onrender.com/files", {

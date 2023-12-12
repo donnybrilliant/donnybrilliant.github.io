@@ -58,12 +58,16 @@ let currentIndex = 0;
 let direction = 1;
 
 // Event listeners
+
+// Toggle navigation menu
 navToggle.addEventListener("click", () =>
   toggleMenu(navigation, navToggle, navIcon)
 );
+// Toggle package.json
 togglePackageJson.addEventListener("click", () =>
   packageJson.classList.toggle("active")
 );
+// Toggle terminal
 toggleTerminal.addEventListener("click", () =>
   toggleTerminalVisibility(
     terminalElement,
@@ -72,12 +76,14 @@ toggleTerminal.addEventListener("click", () =>
     fileSystemData
   )
 );
+// Hover effect for avatar
 avatar.addEventListener("mouseover", () => (avatar.src = avatar6));
-
+// Reset avatar after hover
 avatar.addEventListener("mouseout", () =>
   updateAvatar(avatar, avatars, currentIndex, direction)
 );
 
+// Initialize modules on load
 window.addEventListener("load", () => {
   fetchData(packageJson);
   fetchFileSystemData().then((data) => (fileSystemData = data));

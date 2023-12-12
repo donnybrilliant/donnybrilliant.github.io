@@ -37,5 +37,6 @@ export default function initTerminal(container, fileSystemData) {
   // Handle key input
   term.onKey((eventData) => handleKeyInput(eventData, term, processCommand));
 
+  // Print the ascii art
   ascii(term);
 }

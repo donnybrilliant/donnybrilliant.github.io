@@ -1,4 +1,4 @@
-// src/typewriter.js
+// Function for typing effect
 export function typeWriter(typeContainer, messageArray, textPosition, speed) {
   typeContainer.innerHTML =
     messageArray[0].substring(0, textPosition) + `<span class="blink">_</span>`;

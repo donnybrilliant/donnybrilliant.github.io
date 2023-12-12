@@ -1,4 +1,4 @@
-// src/avatar.js
+// Function for animations before the regular interval starts
 export function manualAvatarChange(avatar, startRegularInterval, avatars) {
   let switchCount = 0;
   const totalSwitches = 6;
@@ -12,6 +12,7 @@ export function manualAvatarChange(avatar, startRegularInterval, avatars) {
   }, 500);
 }
 
+// Function to start the regular interval
 export function startRegularInterval(avatar, avatars) {
   let currentIndex = 0;
   let direction = 1;
@@ -23,6 +24,7 @@ export function startRegularInterval(avatar, avatars) {
   setInterval(updateAvatarInterval, 800);
 }
 
+// Function to update the avatar
 export function updateAvatar(
   avatar,
   avatars,

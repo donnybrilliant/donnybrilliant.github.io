@@ -1,4 +1,4 @@
-// src/scrollspy.js
+// Function to setup scrollspy
 export function setupScrollspy(sections, navItems) {
   const onScroll = () => {
     const headerHeight = document.querySelector("header").offsetHeight;
