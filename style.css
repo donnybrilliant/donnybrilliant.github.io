@@ -155,6 +155,9 @@ section > :first-child {
 #home > div {
   width: 100%;
 }
+#avatar {
+  transition: all 0.5s ease-in-out;
+}
 
 #typewriter {
   height: 10rem;
@@ -173,7 +176,7 @@ section > :first-child {
     justify-content: center;
   }
   #home div,
-  #home img {
+  #avatar {
     max-width: 50%;
   }
   #typewriter {
