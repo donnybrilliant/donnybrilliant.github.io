@@ -6,6 +6,8 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <script src="https://kit.fontawesome.com/576cd46915.js" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="I am a web developer. Check out my package.json or browse my GitHub Projects through the terminal. I like random stuff_">
   <title>Portfolio</title>
 </head>
 
@@ -28,7 +30,7 @@
     <section id="home">
       <div>
         <h1>Hello world!</h1>
-        <p></p>
+        <p id="typewriter"></p>
       </div>
       <img src="./assets/avatars/avatar.svg" alt="Daniel's avatar" />
     </section>
@@ -36,7 +38,7 @@
     <section id="projects">
       <h2>Projects</h2>
       <p>
-        The following projects were made as part of the curriculum at <span class="hover">Noroff</span>.
+        The following projects were made as part of the curriculum at Noroff.
         <span class="random"><a href="http://www.stavangerkameratene.no" target="_blank">Look</a></span>
         and you
         might
@@ -154,11 +156,12 @@
           </div>
         </li>
       </ul>
-      <div>
-        <h3 id="toggle-terminal">terminal.sh</h3>
+      <div id="toggle-terminal">
+        <h3>terminal.sh</h3>
         <p>Click to open terminal.</p>
       </div>
       <div id="terminal"></div>
+      <p class="subtle">ALWAYS A PROJECT IN THE BACK OF MY MIND</p>
 
     </section>
 
@@ -183,8 +186,10 @@
         <i class="fa-brands fa-node"></i>
 
       </div>
-      <h3 id="toggle-package-json">package.json</h3>
-      <p>Click to view dependencies for all my projects.</p>
+      <div id="toggle-package-json">
+        <h3>package.json</h3>
+        <p>Click to view dependencies for all my projects.</p>
+      </div>
       <pre id="package-json"></pre>
       <p class="subtle">NEVER STOP LEARNING</p>
 
@@ -210,7 +215,7 @@
             <i class="fa-solid fa-envelope"></i> Email</a>
         </li>
       </ul>
-      <p>NOTHING IS EVER FINISHED</p>
+      <p class="subtle">NOTHING IS EVER FINISHED</p>
     </section>
   </main>
   <footer>
