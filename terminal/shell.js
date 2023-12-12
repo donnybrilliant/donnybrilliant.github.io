@@ -1,7 +1,11 @@
-import { setCurrentDir, getCurrentDir, getCurrentPath } from "./fileSystem.js";
+import {
+  setCurrentDir,
+  getCurrentDir,
+  getCurrentPath,
+  setName,
+} from "./fileSystem.js";
 import { ANSI_COLORS } from "./colors";
-import { getName, setName } from "./fileSystem.js";
-import { term } from "../main.js";
+import { term } from "./index.js";
 
 /**
  * Mocked ShellJS 'ls' command with list flag support.

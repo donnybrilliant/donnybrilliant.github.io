@@ -1,4 +1,4 @@
-import { term } from "../main";
+import { term } from "./index.js";
 let snake;
 // Top of snake.js
 let isActive = false;

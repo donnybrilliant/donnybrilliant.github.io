@@ -1,17 +1,28 @@
-import fileData from "../data.json";
-
 let promptName = "";
+let fileData = {};
 
-if (!fileData.hasOwnProperty("home")) {
-  fileData.home = {};
-}
-
-// Check if /home/user exists, if not, add it with mock documents.
-if (!fileData.home.hasOwnProperty("user")) {
-  fileData.home.user = {
-    document1: "This is the content of document1.",
-    document2: "Another content here for document2.",
-  };
+/**
+ * Populate the file system with data.
+ * @param {*} data
+ */
+function populateFileSystem(data) {
+  if (data) {
+    // Populate with fetched data
+    for (const key in data) {
+      fileData[key] = data[key];
+    }
+  } else {
+    // Fallback: Create default directories and files
+    if (!fileData.hasOwnProperty("home")) {
+      fileData.home = {};
+    }
+    if (!fileData.home.hasOwnProperty("user")) {
+      fileData.home.user = {
+        document1: "This is the content of document1.",
+        document2: "Another content here for document2.",
+      };
+    }
+  }
 }
 
 let pathStack = ["home", "user"]; // We start in /home/user by default
@@ -120,4 +131,11 @@ function setName(newName) {
   }
 }
 
-export { getCurrentDir, setCurrentDir, getCurrentPath, getName, setName };
+export {
+  getCurrentDir,
+  setCurrentDir,
+  getCurrentPath,
+  getName,
+  setName,
+  populateFileSystem,
+};

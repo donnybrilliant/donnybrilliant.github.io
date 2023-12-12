@@ -1,5 +1,5 @@
 import { commands } from "./shell.js";
-import { term } from "../main.js";
+import { term } from "./index.js";
 import { loadtest, chars, hack, startMatrix, getClientInfo } from "./random.js";
 import {
   editFile,

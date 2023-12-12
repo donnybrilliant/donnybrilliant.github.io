@@ -1,10 +1,11 @@
 import { Terminal } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
 import { WebLinksAddon } from "xterm-addon-web-links";
-import "xterm/css/xterm.css";
-import processCommand from "./src/commandProcessor.js";
-import handleKeyInput from "./src/keyInputHandler.js";
-import ascii from "./src/ascii";
+import "../node_modules/xterm/css/xterm.css";
+import processCommand from "./commandProcessor.js";
+import handleKeyInput from "./keyInputHandler.js";
+import ascii from "./ascii";
+import { populateFileSystem } from "./fileSystem.js";
 
 export const term = new Terminal();
 
@@ -16,18 +17,25 @@ term.loadAddon(fitAddon);
 const webLinksAddon = new WebLinksAddon();
 term.loadAddon(webLinksAddon);
 
-// Apply the terminal to the DOM
-term.open(document.getElementById("terminal"));
-term.focus();
+// Export a function to initialize the terminal
+export default function initTerminal(container, fileSystemData) {
+  // Populate the file system
+  populateFileSystem(fileSystemData);
+  const containerElement =
+    typeof container === "string"
+      ? document.querySelector(container)
+      : container;
+  term.open(containerElement);
+  term.focus();
+  fitAddon.fit();
 
-fitAddon.fit(); // Fit to the container on initial load
+  // Refit on window resize
+  window.addEventListener("resize", () => {
+    fitAddon.fit();
+  });
 
-// Refit on window resize
-window.addEventListener("resize", () => {
-  fitAddon.fit(); // Refit on window resize
-});
+  // Handle key input
+  term.onKey((eventData) => handleKeyInput(eventData, term, processCommand));
 
-// Handle key input
-term.onKey((eventData) => handleKeyInput(eventData, term, processCommand));
-
-ascii(term);
+  ascii(term);
+}

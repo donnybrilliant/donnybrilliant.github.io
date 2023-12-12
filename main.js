@@ -1,6 +1,7 @@
 import "@fontsource/silkscreen";
 import "@fontsource/dosis";
 import "./style.css";
+import initTerminal from "./terminal";
 
 // DOM Elements
 const navigation = document.querySelector("#navigation");
@@ -114,3 +115,24 @@ window.addEventListener("load", () => {
 togglePackageJson.addEventListener("click", () => {
   packageJson.classList.toggle("active");
 });
+
+async function fetchFileSystemData() {
+  try {
+    const response = await fetch("https://packagejson.onrender.com/files", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    return await response.json();
+  } catch (error) {
+    return null;
+  }
+}
+
+async function initializeTerminal() {
+  const fileSystemData = await fetchFileSystemData();
+  initTerminal("#terminal", fileSystemData);
+}
+
+initializeTerminal();
