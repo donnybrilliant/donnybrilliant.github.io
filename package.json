@@ -1,5 +1,6 @@
 {
   "name": "portfolio-2",
+  "description": "My personal portfolio website",
   "private": true,
   "version": "1.2.0",
   "type": "module",
