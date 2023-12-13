@@ -1,6 +1,6 @@
 # Portfolio
 
-![image](https://github.com/donnybrilliant/portfolio/blob/main/assets/portfolio-header.png)
+![image](https://github.com/donnybrilliant/portfolio/blob/main/assets/screenshots/portfolio-header.webp)
 
 [![Deployment to GitHub Pages](https://github.com/donnybrilliant/portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/donnybrilliant/portfolio/actions/workflows/deploy.yml)
 
@@ -11,7 +11,7 @@
 My personal portfolio.
 Keeping it simple.
 It uses a [packagejson](https://github.com/donnybrilliant/packagejson) to list all dependencies im using on GitHub.
-It also features a fun little terminal, built upon [xterm](https://xtermjs.org/) where you can browse my repos.
+It also features a fun little terminal, built with [xterm](https://xtermjs.org/), where you can browse my repos.
 And a small slider to adjust the theme colors.
 
 ## Built With
@@ -24,9 +24,9 @@ And a small slider to adjust the theme colors.
 
 ## Further improvements
 
-- Self hosted icons
-- Terminal npm package
-- More fun stuff
+- Create project cards automatically with packagejson and add screenshots with Puppeteer.
+- Create a npm package of my terminal.
+- More fun stuff!
 
 ## Contributing
 
