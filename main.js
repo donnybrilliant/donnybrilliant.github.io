@@ -65,18 +65,22 @@ navToggle.addEventListener("click", () =>
   toggleMenu(navigation, navToggle, navIcon)
 );
 // Toggle package.json
-togglePackageJson.addEventListener("click", () =>
-  packageJson.classList.toggle("active")
-);
+togglePackageJson.addEventListener("click", () => {
+  const isActive = packageJson.classList.contains("active");
+  packageJson.classList.toggle("active");
+  togglePackageJson.setAttribute("aria-expanded", !isActive);
+});
 // Toggle terminal
-toggleTerminal.addEventListener("click", () =>
+toggleTerminal.addEventListener("click", () => {
   toggleTerminalVisibility(
     terminalElement,
     isTerminalInitialized,
     initTerminal,
     fileSystemData
-  )
-);
+  );
+  const isExpanded = toggleTerminal.getAttribute("aria-expanded") === "true";
+  toggleTerminal.setAttribute("aria-expanded", !isExpanded);
+});
 // Hover effect for avatar
 avatar.addEventListener("mouseover", () => (avatar.src = avatar6));
 // Reset avatar after hover
