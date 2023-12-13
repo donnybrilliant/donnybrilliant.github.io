@@ -3,7 +3,7 @@
   --secondary-font: "Silkscreen", sans-serif;
   --primary-color: hsl(358, 100%, 67%);
   --secondary-color: hsl(44, 100%, 68%);
-  --tertiary-color: hsl(83, 68%, 56%);
+  --tertiary-color: hsl(137, 79%, 54%);
   --quad-color: hsl(201, 100%, 70%);
   --white-color: hsl(0, 0%, 100%);
   --black-color: hsl(0, 0%, 0%);
@@ -50,7 +50,8 @@ h3 {
   font-size: 2rem;
 }
 
-a {
+a,
+.button-heading {
   font-family: var(--secondary-font);
   text-decoration: none;
   color: var(--black-color);
@@ -58,7 +59,8 @@ a {
   margin-inline: -0.25rem;
 }
 
-a:hover {
+a:hover,
+.button-heading:hover {
   box-shadow: inset 800px 0 0 0 var(--black-color);
   color: var(--white-color);
 }
@@ -199,6 +201,7 @@ section > :first-child {
   list-style-type: none;
   width: 100%;
   max-width: 1200px;
+  overflow-x: auto;
 }
 
 .project-card {
@@ -324,19 +327,15 @@ footer {
 #toggle-package-json,
 #toggle-terminal {
   cursor: pointer;
-  margin-top: 10vh;
+  margin-top: 5vh;
   margin-bottom: 2rem;
   text-align: center;
-  h3 {
-    padding: 0.25rem;
-  }
-}
-
-#toggle-package-json:hover,
-#toggle-terminal:hover {
-  h3 {
-    box-shadow: inset 800px 0 0 0 var(--black-color);
-    color: var(--white-color);
+  scroll-margin-top: 20vh;
+  color: var(--black-color);
+  border: 0;
+  p {
+    font-size: 1rem;
+    line-height: 2rem;
   }
 }
 
@@ -361,6 +360,10 @@ footer {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.button-heading {
+  font-size: clamp(1.8rem, 10vw, 4rem);
 }
 
 .blink {
