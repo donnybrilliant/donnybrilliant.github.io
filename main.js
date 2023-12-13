@@ -13,6 +13,7 @@ import { typeWriter } from "./src/typewriter.js";
 import { fetchData, fetchFileSystemData } from "./src/api.js";
 import { toggleTerminalVisibility } from "./src/terminalToggle.js";
 import { initThemeSlider } from "./src/theme.js";
+import { initFontAwesome } from "./src/fontawesome.js";
 
 // Import avatar images
 import avatar0 from "./assets/avatars/avatar.svg";
@@ -38,6 +39,7 @@ const avatar = document.getElementById("avatar");
 const avatars = [avatar0, avatar1, avatar2, avatar3, avatar4, avatar5, avatar6];
 
 // Initialize modules
+initFontAwesome();
 setupNavItems(navItems, navigation, navToggle, navIcon);
 setupScrollspy(sections, navItems);
 
