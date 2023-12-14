@@ -21,6 +21,8 @@ import {
 
 export function initFontAwesome() {
   library.add(
+    faReact,
+    faSass,
     faBars,
     faClose,
     faBootstrap,

@@ -93,6 +93,10 @@ header {
   color: var(--black-color);
 }
 
+#nav-icon-close {
+  display: none;
+}
+
 #navigation {
   display: none;
   list-style-type: none;
@@ -276,9 +280,10 @@ section > :first-child {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  margin-top: 1rem;
 }
 
-.icons i {
+.icons > * {
   font-size: 3rem;
   padding: 0.75rem;
 }

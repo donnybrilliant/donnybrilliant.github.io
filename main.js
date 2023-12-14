@@ -27,7 +27,6 @@ import avatar6 from "./assets/avatars/avatar6.svg";
 // DOM Elements
 const navigation = document.querySelector("#navigation");
 const navToggle = document.querySelector("#nav-toggle");
-const navIcon = document.querySelector("#nav-icon");
 const navItems = document.querySelectorAll("#navigation li a");
 const sections = document.querySelectorAll("section");
 const typeContainer = document.querySelector("#home div p");
@@ -40,7 +39,7 @@ const avatars = [avatar0, avatar1, avatar2, avatar3, avatar4, avatar5, avatar6];
 
 // Initialize modules
 initFontAwesome();
-setupNavItems(navItems, navigation, navToggle, navIcon);
+setupNavItems(navItems, navigation, navToggle);
 setupScrollspy(sections, navItems);
 
 // Terminal variables
@@ -63,9 +62,7 @@ let direction = 1;
 // Event listeners
 
 // Toggle navigation menu
-navToggle.addEventListener("click", () =>
-  toggleMenu(navigation, navToggle, navIcon)
-);
+navToggle.addEventListener("click", () => toggleMenu(navigation, navToggle));
 // Toggle package.json
 togglePackageJson.addEventListener("click", () => {
   const isActive = packageJson.classList.contains("active");
