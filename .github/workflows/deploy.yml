@@ -60,10 +60,6 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan ssh.chaege3vl.service.one >> ~/.ssh/known_hosts
 
-      - name: Debug SSH connection
-        run: |
-          ssh -i ~/.ssh/id_ed25519 -vvv chaege3vl_vierwiqq@ssh.chaege3vl.service.one
-
       - name: Deploy via rsync
         run: |
           rsync -avz \
