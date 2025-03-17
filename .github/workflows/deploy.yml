@@ -58,8 +58,6 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan ${{ secrets.PROISP_HOST }} >> ~/.ssh/known_hosts
       - name: Deploy via rsync
-        run: |
-           rsync -avz \
-            -e "ssh -i ~/.ssh/id_ed25519" \
-            ./dist/ \
-            ${{ secrets.PROISP_USER }}@${{ secrets.PROISP_HOST }}:{{ secrets.PROISP_DIR }}
+        run: rsync -avz -e "ssh -i ~/.ssh/id_ed25519" ./dist/ "${{ secrets.PROISP_USER }}@${{ secrets.PROISP_HOST }}:${{ secrets.PROISP_DIR }}"
+
+
