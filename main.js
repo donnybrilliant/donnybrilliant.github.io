@@ -52,7 +52,7 @@ const speed = 30;
 let messageArray = [
   `My name is Daniel, I am a web developer. <br />
    Check out my <a href="#toggle-package-json">package.json</a> or browse my GitHub Projects through the <a href="#toggle-terminal">terminal</a>. <br />
-   I like <a href="https://ragerrr.netlify.app/" target="_blank">random stuff</a>`,
+   I like <a href="https://ragerrr.netlify.app/" target="_blank">random stuff</a>, like the theme slider in the lower right corner`,
 ];
 
 // Avatar variables

@@ -35,7 +35,3 @@ Please dont.
 ## Contact
 
 [email](mailto:daniel.vier@gmail.com)
-
-## Acknowledgments
-
-Nothing is ever finished..

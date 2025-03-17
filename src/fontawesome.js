@@ -17,6 +17,8 @@ import {
   faFigma,
   faLinux,
   faNode,
+  faPhp,
+  faWordpress,
 } from "@fortawesome/free-brands-svg-icons";
 
 export function initFontAwesome() {
@@ -35,7 +37,9 @@ export function initFontAwesome() {
     faJsSquare,
     faLinkedin,
     faLinux,
-    faNode
+    faNode,
+    faPhp,
+    faWordpress
   );
   dom.watch();
 }
