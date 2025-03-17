@@ -2,7 +2,7 @@
 
 ![image](https://github.com/donnybrilliant/portfolio/blob/main/assets/screenshots/portfolio-header.webp)
 
-[![Deployment to GitHub Pages](https://github.com/donnybrilliant/donnybrilliant.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/donnybrilliant/donnybrilliant.github.io/actions/workflows/deploy.yml)
+[![Deployment](https://github.com/donnybrilliant/donnybrilliant.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/donnybrilliant/donnybrilliant.github.io/actions/workflows/deploy.yml)
 
 [This](https://donnybrilliant.github.io/) is a portfolio I created for Portfolio-2 at Noroff.
 
