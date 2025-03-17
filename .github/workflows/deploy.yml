@@ -62,7 +62,7 @@ jobs:
           rsync -avvvz --progress \
           -e "ssh -i ~/.ssh/id_ed25519 -p 22" \
           ./dist/ \
-          ${{ secrets.PROISP_USER }}@${{ secrets.PROISP_HOST }}:${{ secrets.PROISP_DIR }}
+          "${{ secrets.PROISP_USER }}@${{ secrets.PROISP_HOST }}:${{ secrets.PROISP_DIR }}"
 
 
 
