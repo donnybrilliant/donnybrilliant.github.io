@@ -54,9 +54,9 @@ jobs:
         with:
           server: ${{ secrets.PROISP_HOST }}
           username: ${{ secrets.PROISP_USER }}
-          password: ${{ secrets.PRO_PASSWORD }}
+          password: ${{ secrets.PROISP_PASSWORD }}
           # The local directory with your built website files
-          local-dir: "build"
+          local-dir: "dist"
           # The target directory on the server (often public_html)
           server-dir: "/webroots/r1129919"
 
