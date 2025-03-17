@@ -52,7 +52,7 @@ jobs:
       - name: FTP Deploy
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: ${{ secrets.PROISP_HOST }}
+          server: "ftp.chaege3vl.service.one"
           username: ${{ secrets.PROISP_USER }}
           password: ${{ secrets.PROISP_PASSWORD }}
           # The local directory with your built website files
