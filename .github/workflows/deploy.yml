@@ -50,6 +50,26 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
+      - name: Install rsync & ssh-client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y rsync openssh-client
+
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PROISP_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan ssh.chaege3vl.service.one >> ~/.ssh/known_hosts
+
+      - name: Deploy via rsync
+        run: |
+          rsync -avz \
+          -e "ssh -i ~/.ssh/id_ed25519" \
+          dist/ \
+          chaege3vl_vierwiqq@ssh.chaege3vl.service.one:/webroots/r1129919/
+
+
 
 
 
