@@ -49,20 +49,16 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-      - name: Install rsync & ssh-client
-        run: sudo apt-get update && sudo apt-get install -y rsync openssh-client
-      - name: Configure SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.PROISP_SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan ${{ secrets.PROISP_HOST }} >> ~/.ssh/known_hosts
-      - name: Deploy via rsync (debug)
-        run: |
-          rsync -avvvz --progress \
-          -e "ssh -i ~/.ssh/id_ed25519 -p 22" \
-          ./dist/ \
-          "${{ secrets.PROISP_USER }}@${{ secrets.PROISP_HOST }}:${{ secrets.PROISP_DIR }}"
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.PROISP_HOST }}
+          username: ${{ secrets.PROISP_USER }}
+          password: ${{ secrets.PRO_PASSWORD }}
+          # The local directory with your built website files
+          local-dir: "build"
+          # The target directory on the server (often public_html)
+          server-dir: "/webroots/r1129919"
 
 
 
