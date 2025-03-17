@@ -58,7 +58,7 @@ jobs:
           # The local directory with your built website files
           local-dir: "dist"
           # The target directory on the server (often public_html)
-          server-dir: "/webroots/r1129919"
+          server-dir: "/webroots/r1129919/"
 
 
 
