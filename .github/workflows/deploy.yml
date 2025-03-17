@@ -50,7 +50,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
       - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        uses: SamKirkland/FTP-Deploy-Action@4.3.5
         with:
           server: "ftp.chaege3vl.service.one"
           username: ${{ secrets.PROISP_USER }}
