@@ -35,10 +35,60 @@ const terminalElement = document.querySelector("#terminal");
 const avatar = document.getElementById("avatar");
 const avatars = [avatar0, avatar1, avatar2, avatar3, avatar4, avatar5, avatar6];
 
-// Initialize modules
-initFontAwesome();
-setupNavItems(navItems, navigation, navToggle);
-setupScrollspy(sections, navItems);
+// Preload fonts before initializing app
+async function preloadFonts(timeout = 3000) {
+  const fonts = [
+    { family: 'Dosis', url: '/node_modules/@fontsource/dosis/files/dosis-latin-200-normal.woff2', weight: 200 },
+    { family: 'Dosis', url: '/node_modules/@fontsource/dosis/files/dosis-latin-400-normal.woff2', weight: 400 },
+    { family: 'Dosis', url: '/node_modules/@fontsource/dosis/files/dosis-latin-800-normal.woff2', weight: 800 },
+    { family: 'Silkscreen', url: '/node_modules/@fontsource/silkscreen/files/silkscreen-latin-400-normal.woff2', weight: 400 }
+  ];
+
+  const fontPromises = fonts.map(async ({ family, url, weight }) => {
+    const fontFace = new FontFace(family, `url(${url})`, {
+      weight: weight.toString(),
+      display: 'swap'
+    });
+    
+    await fontFace.load();
+    document.fonts.add(fontFace);
+  });
+
+  // Race between font loading and timeout
+  const timeoutPromise = new Promise((resolve) => {
+    setTimeout(() => {
+      console.warn('⚠️ Font loading timeout, showing page with fallbacks');
+      resolve();
+    }, timeout);
+  });
+
+  await Promise.race([
+    Promise.all(fontPromises),
+    timeoutPromise
+  ]);
+
+  document.body.classList.add('fonts-loaded');
+}
+
+// Initialize app after fonts are loaded
+async function initApp() {
+  try {
+    // Load fonts first (with timeout)
+    await preloadFonts(3000);
+    console.log('✅ Fonts loaded, initializing app');
+  } catch (error) {
+    console.warn('⚠️ Font loading failed, continuing with fallbacks:', error);
+    document.body.classList.add('fonts-loaded');
+  }
+  
+  // Initialize modules
+  initFontAwesome();
+  setupNavItems(navItems, navigation, navToggle);
+  setupScrollspy(sections, navItems);
+}
+
+// Start app
+initApp();
 
 // Terminal variables
 let fileSystemData = null;
