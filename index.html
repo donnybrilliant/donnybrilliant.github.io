@@ -8,38 +8,33 @@
   <meta name="description" content="Hi, my name is Daniel. I am a web developer. Check out my fun portfolio_">
   <title>Portfolio</title>
   
-  <!-- Critical font CSS to prevent FOUT -->
+  <!-- Font loading optimization -->
   <style>
-    @font-face {
-      font-family: 'Dosis';
-      font-style: normal;
-      font-weight: 200;
-      font-display: swap;
-      src: url('/node_modules/@fontsource/dosis/files/dosis-latin-200-normal.woff2') format('woff2');
+    /* Improved fallback fonts that closely match the target fonts */
+    :root {
+      --fallback-primary: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --fallback-secondary: 'Courier New', 'Monaco', 'Menlo', monospace;
     }
     
-    @font-face {
-      font-family: 'Dosis';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url('/node_modules/@fontsource/dosis/files/dosis-latin-400-normal.woff2') format('woff2');
+    /* Font loading states */
+    body:not(.fonts-loaded) {
+      font-family: var(--fallback-primary);
     }
     
-    @font-face {
-      font-family: 'Dosis';
-      font-style: normal;
-      font-weight: 800;
-      font-display: swap;
-      src: url('/node_modules/@fontsource/dosis/files/dosis-latin-800-normal.woff2') format('woff2');
+    body:not(.fonts-loaded) h1, 
+    body:not(.fonts-loaded) h2, 
+    body:not(.fonts-loaded) h3, 
+    body:not(.fonts-loaded) h4, 
+    body:not(.fonts-loaded) h5, 
+    body:not(.fonts-loaded) h6,
+    body:not(.fonts-loaded) a,
+    body:not(.fonts-loaded) .button-heading {
+      font-family: var(--fallback-secondary);
     }
     
-    @font-face {
-      font-family: 'Silkscreen';
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url('/node_modules/@fontsource/silkscreen/files/silkscreen-latin-400-normal.woff2') format('woff2');
+    /* Smooth transition when fonts load */
+    body.fonts-loaded * {
+      transition: font-family 0.3s ease;
     }
   </style>
 </head>

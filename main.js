@@ -1,4 +1,3 @@
-// Fonts are now loaded inline in HTML head to prevent FOUT
 import "./style.css";
 import initTerminal from "./src/terminal";
 import { toggleMenu, setupNavItems } from "./src/navigation.js";
