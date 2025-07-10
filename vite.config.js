@@ -1,9 +1,11 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  // Minimal config - Vite handles fonts automatically
+  // Everything here is OPTIONAL! 
+  // Vite works perfectly with an empty config: export default {}
+  
   build: {
-    // Optional: Clean console logs in production
+    // Optional: Remove console.log in production builds
     minify: 'terser',
     terserOptions: {
       compress: {
