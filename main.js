@@ -1,5 +1,9 @@
-import "@fontsource/silkscreen";
-import "@fontsource/dosis";
+// Vite + @fontsource approach - tree-shaken and optimized
+import "@fontsource/dosis/200.css";
+import "@fontsource/dosis/400.css";
+import "@fontsource/dosis/800.css";
+import "@fontsource/silkscreen/400.css";
+
 import "./style.css";
 import initTerminal from "./src/terminal";
 import { toggleMenu, setupNavItems } from "./src/navigation.js";
@@ -37,10 +41,17 @@ const terminalElement = document.querySelector("#terminal");
 const avatar = document.getElementById("avatar");
 const avatars = [avatar0, avatar1, avatar2, avatar3, avatar4, avatar5, avatar6];
 
+// Vite handles font loading automatically, just initialize app
 // Initialize modules
 initFontAwesome();
 setupNavItems(navItems, navigation, navToggle);
 setupScrollspy(sections, navItems);
+
+// Optional: Wait for fonts to be ready for smooth experience
+document.fonts.ready.then(() => {
+  document.body.classList.add("fonts-loaded");
+  console.log("✅ All fonts loaded by Vite");
+});
 
 // Terminal variables
 let fileSystemData = null;

@@ -1,6 +1,6 @@
 :root {
-  --primary-font: "Dosis", sans-serif;
-  --secondary-font: "Silkscreen", sans-serif;
+  --primary-font: "Dosis", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --secondary-font: "Silkscreen", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", monospace;
   --primary-color: hsl(358, 100%, 67%);
   --secondary-color: hsl(44, 100%, 68%);
   --tertiary-color: hsl(137, 79%, 54%);
@@ -145,7 +145,7 @@ section {
   padding-inline: 2rem;
 }
 
-section > :first-child {
+section> :first-child {
   margin-top: 10dvh;
 }
 
@@ -153,13 +153,14 @@ section > :first-child {
   background-color: var(--primary-color);
 }
 
-#home > *:not(:first-child) {
+#home>*:not(:first-child) {
   margin: 1rem;
 }
 
-#home > div {
+#home>div {
   width: 100%;
 }
+
 #avatar {
   transition: all 0.5s ease-in-out;
 }
@@ -180,14 +181,17 @@ section > :first-child {
     flex-direction: row-reverse;
     justify-content: center;
   }
+
   #home div,
   #avatar {
     max-width: 50%;
   }
+
   #typewriter {
     width: auto;
     height: 12rem;
   }
+
   h1 {
     margin-left: -1.5rem;
   }
@@ -283,13 +287,13 @@ section > :first-child {
   margin-top: 1rem;
 }
 
-.icons > * {
+.icons>* {
   font-size: 3rem;
   padding: 0.75rem;
 }
 
-#typewriter > a,
-.random > a {
+#typewriter>a,
+.random>a {
   font-family: var(--primary-font);
   cursor: pointer;
   font-weight: 800;
@@ -338,6 +342,7 @@ footer {
   scroll-margin-top: 20vh;
   color: var(--black-color);
   border: 0;
+
   p {
     font-size: 1rem;
     line-height: 2rem;
