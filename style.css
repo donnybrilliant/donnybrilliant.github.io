@@ -1,3 +1,21 @@
+/* Font loading states - prevent FOUT */
+body:not(.fonts-loaded) {
+  visibility: hidden;
+}
+
+body.fonts-loaded {
+  visibility: visible;
+}
+
+body:not(.fonts-loaded)::before {
+  content: "Loading...";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: visible;
+}
+
 :root {
   --primary-font: "Dosis", sans-serif;
   --secondary-font: "Silkscreen", monospace;

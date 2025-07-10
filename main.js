@@ -25,6 +25,34 @@ import avatar4 from "./assets/avatars/avatar4.svg";
 import avatar5 from "./assets/avatars/avatar5.svg";
 import avatar6 from "./assets/avatars/avatar6.svg";
 
+// Font loading detection
+const loadFonts = async () => {
+  // Define the fonts we're using
+  const fonts = [
+    { family: "Dosis", weight: 200 },
+    { family: "Dosis", weight: 400 },
+    { family: "Silkscreen", weight: 400 },
+  ];
+
+  try {
+    // Wait for all fonts to load
+    await Promise.all(
+      fonts.map(async ({ family, weight }) => {
+        await document.fonts.load(`${weight} 1em "${family}"`);
+        console.log(`✅ Loaded: ${family} ${weight}`);
+      })
+    );
+
+    // Add the fonts-loaded class to body
+    document.body.classList.add("fonts-loaded");
+    console.log("🎉 All fonts loaded successfully!");
+  } catch (error) {
+    console.error("❌ Font loading failed:", error);
+    // Still add the class to prevent infinite loading state
+    document.body.classList.add("fonts-loaded");
+  }
+};
+
 // DOM Elements
 const navigation = document.querySelector("#navigation");
 const navToggle = document.querySelector("#nav-toggle");
@@ -89,7 +117,11 @@ avatar.addEventListener("mouseout", () =>
 );
 
 // Initialize modules on load
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
+  // Load fonts first
+  await loadFonts();
+
+  // Then initialize everything else
   fetchData(packageJson);
   fetchFileSystemData().then((data) => (fileSystemData = data));
   typeWriter(typeContainer, messageArray, textPosition, speed);
