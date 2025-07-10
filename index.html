@@ -8,49 +8,30 @@
   <meta name="description" content="Hi, my name is Daniel. I am a web developer. Check out my fun portfolio_">
   <title>Portfolio</title>
   
-  <!-- Font loading optimization -->
+  <!-- Vite-optimized font loading -->
   <style>
-    /* Hide content until fonts load to prevent FOUT */
-    body {
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    /* Show content with smooth transition when fonts are loaded */
-    body.fonts-loaded {
-      visibility: visible;
-      opacity: 1;
-    }
-    
-    /* Fallback fonts that closely match the target fonts */
+    /* Improved fallback fonts for better font matching */
     :root {
-      --fallback-primary: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      --fallback-secondary: 'Courier New', 'Monaco', 'Menlo', monospace;
+      --primary-font: "Dosis", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --secondary-font: "Silkscreen", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", monospace;
     }
     
-    /* Loading indicator */
-    .font-loading {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: var(--fallback-primary);
-      font-size: 1.2rem;
-      color: #666;
-      z-index: 9999;
-      visibility: visible;
-      opacity: 1;
+    /* Smooth font transition when loaded */
+    body.fonts-loaded {
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     
-    body.fonts-loaded .font-loading {
-      display: none;
+    /* Optional: Reduce layout shift */
+    body {
+      font-feature-settings: "kern" 1;
     }
   </style>
   </head>
 
-<body>
-  <div class="font-loading">Loading fonts...</div>
+  <body>
   <header>
     <nav>
       <ul id="navigation">

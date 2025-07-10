@@ -1,6 +1,6 @@
 :root {
-  --primary-font: "Dosis", sans-serif;
-  --secondary-font: "Silkscreen", sans-serif;
+  --primary-font: "Dosis", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --secondary-font: "Silkscreen", "SF Mono", "Monaco", "Inconsolata", "Roboto Mono", "Source Code Pro", monospace;
   --primary-color: hsl(358, 100%, 67%);
   --secondary-color: hsl(44, 100%, 68%);
   --tertiary-color: hsl(137, 79%, 54%);
