@@ -7,6 +7,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Hi, my name is Daniel. I am a web developer. Check out my fun portfolio_">
   <title>Portfolio</title>
+
+  <!-- Preload critical fonts to prevent flash -->
+  <link rel="preload" href="/node_modules/@fontsource/dosis/files/dosis-latin-200-normal.woff2" as="font"
+    type="font/woff2" crossorigin>
+  <link rel="preload" href="/node_modules/@fontsource/dosis/files/dosis-latin-400-normal.woff2" as="font"
+    type="font/woff2" crossorigin>
+  <link rel="preload" href="/node_modules/@fontsource/dosis/files/dosis-latin-800-normal.woff2" as="font"
+    type="font/woff2" crossorigin>
+  <link rel="preload" href="/node_modules/@fontsource/silkscreen/files/silkscreen-latin-400-normal.woff2" as="font"
+    type="font/woff2" crossorigin>
+
+  <style>
+    /* Hide content until fonts load */
+    body {
+      visibility: hidden;
+    }
+
+    body.fonts-ready {
+      visibility: visible;
+    }
+  </style>
+
+  <script>
+    // Show content when fonts are ready
+    document.fonts.ready.then(() => {
+      document.body.classList.add('fonts-ready');
+    });
+  </script>
 </head>
 
 <body>
