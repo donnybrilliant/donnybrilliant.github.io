@@ -1,6 +1,8 @@
 /* Font loading states - prevent FOUT */
 body:not(.fonts-loaded) {
   visibility: hidden;
+  /* Prevent layout shift during loading */
+  min-height: 100vh;
 }
 
 body.fonts-loaded {
@@ -14,6 +16,21 @@ body:not(.fonts-loaded)::before {
   left: 50%;
   transform: translate(-50%, -50%);
   visibility: visible;
+  /* Use system fonts for loading indicator */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1.2rem;
+  z-index: 9999;
+}
+
+/* Fallback for very slow connections or font failures */
+@media (max-width: 1px) {
+  body:not(.fonts-loaded) {
+    visibility: visible;
+  }
+
+  body:not(.fonts-loaded)::before {
+    display: none;
+  }
 }
 
 :root {

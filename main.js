@@ -35,20 +35,77 @@ const loadFonts = async () => {
   ];
 
   try {
-    // Wait for all fonts to load
-    await Promise.all(
-      fonts.map(async ({ family, weight }) => {
+    // First, try to detect if fonts are already loaded
+    const fontCheckPromises = fonts.map(async ({ family, weight }) => {
+      try {
+        // Check if font is already available
+        const isLoaded = document.fonts.check(`${weight} 1em "${family}"`);
+        if (isLoaded) {
+          console.log(`✅ Font already loaded: ${family} ${weight}`);
+          return Promise.resolve();
+        }
+
+        // Try to load the font
         await document.fonts.load(`${weight} 1em "${family}"`);
         console.log(`✅ Loaded: ${family} ${weight}`);
-      })
-    );
+      } catch (fontError) {
+        console.warn(`⚠️ Failed to load ${family} ${weight}:`, fontError);
+        // Continue even if one font fails
+      }
+    });
+
+    // Wait for all font loading attempts
+    await Promise.allSettled(fontCheckPromises);
+
+    // Add a small delay to ensure fonts are fully rendered
+    await new Promise((resolve) => setTimeout(resolve, 100));
 
     // Add the fonts-loaded class to body
     document.body.classList.add("fonts-loaded");
-    console.log("🎉 All fonts loaded successfully!");
+    console.log("🎉 Font loading process completed!");
   } catch (error) {
     console.error("❌ Font loading failed:", error);
     // Still add the class to prevent infinite loading state
+    document.body.classList.add("fonts-loaded");
+  }
+};
+
+// Alternative approach: Use FontFace API as fallback
+const loadFontsWithFallback = async () => {
+  const fonts = [
+    { family: "Dosis", weight: 200 },
+    { family: "Dosis", weight: 400 },
+    { family: "Silkscreen", weight: 400 },
+  ];
+
+  try {
+    // Try the standard approach first
+    await loadFonts();
+  } catch (error) {
+    console.log("🔄 Trying FontFace API fallback...");
+
+    // Fallback: Use FontFace API
+    const fontFacePromises = fonts.map(async ({ family, weight }) => {
+      try {
+        // Try to load from @fontsource paths
+        const fontFace = new FontFace(
+          family,
+          `url(/node_modules/@fontsource/${family.toLowerCase()}/files/${family.toLowerCase()}-latin-${weight}-normal.woff2)`,
+          {
+            weight: weight.toString(),
+            display: "swap",
+          }
+        );
+
+        await fontFace.load();
+        document.fonts.add(fontFace);
+        console.log(`✅ FontFace loaded: ${family} ${weight}`);
+      } catch (fontError) {
+        console.warn(`⚠️ FontFace failed for ${family} ${weight}:`, fontError);
+      }
+    });
+
+    await Promise.allSettled(fontFacePromises);
     document.body.classList.add("fonts-loaded");
   }
 };
@@ -118,8 +175,20 @@ avatar.addEventListener("mouseout", () =>
 
 // Initialize modules on load
 window.addEventListener("load", async () => {
-  // Load fonts first
-  await loadFonts();
+  // Load fonts first with timeout
+  const fontLoadingPromise = loadFontsWithFallback();
+  const timeoutPromise = new Promise((resolve) => setTimeout(resolve, 3000)); // 3 second timeout
+
+  try {
+    await Promise.race([fontLoadingPromise, timeoutPromise]);
+  } catch (error) {
+    console.warn("⚠️ Font loading timed out, showing content anyway");
+  }
+
+  // Ensure fonts-loaded class is added even if loading failed
+  if (!document.body.classList.contains("fonts-loaded")) {
+    document.body.classList.add("fonts-loaded");
+  }
 
   // Then initialize everything else
   fetchData(packageJson);
