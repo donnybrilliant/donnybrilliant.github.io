@@ -1,8 +1,5 @@
-// Vite + @fontsource approach - tree-shaken and optimized
-import "@fontsource/dosis/200.css";
-import "@fontsource/dosis/400.css";
-import "@fontsource/dosis/800.css";
-import "@fontsource/silkscreen/400.css";
+import "@fontsource/silkscreen";
+import "@fontsource/dosis";
 
 import "./style.css";
 import initTerminal from "./src/terminal";
