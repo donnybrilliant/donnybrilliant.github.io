@@ -1,0 +1,176 @@
+/* ============================================
+   BASE.CSS - Reset & Base Element Styles
+   ============================================ */
+
+/* Modern CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+  /* Match header/footer color for overscroll bounce */
+  background-color: hsl(0 0% 95%);
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background-color: hsl(220 15% 13%);
+  }
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin-block-end: 0;
+}
+
+/* Remove list styles on ul, ol elements */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  font-family: var(--font-primary);
+  font-weight: 200;
+  line-height: var(--leading-loose);
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: var(--leading-tight);
+}
+
+/* Headings use pixel font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-pixel);
+  text-wrap: balance;
+}
+
+/* Remove all default link styling */
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Border color default */
+*,
+*::before,
+*::after {
+  border-color: hsl(var(--border));
+}
+
+/* Focus visible styles - use primary color by default */
+:focus-visible {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Special focus for hello world section - black outline on primary background */
+.section-home :focus-visible,
+.hello-world-focus:focus-visible {
+  outline: 2px solid hsl(0 0% 0%);
+  outline-offset: 2px;
+}
+
+/* Button reset */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Remove default button styles in safari */
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+  appearance: button;
+}
+
+/* Tiny screen scaling (under 320px) */
+@media (max-width: 259px) {
+  html {
+    font-size: 12px;
+  }
+}

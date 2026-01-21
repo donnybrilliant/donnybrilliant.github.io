@@ -2,7 +2,7 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: ['main']
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
+  group: pages
   cancel-in-progress: true
 
 jobs:
@@ -19,50 +19,50 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+
+    # Pin if you want max stability: ubuntu-22.04
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node
+      - name: Set up Node.js (LTS)
         uses: actions/setup-node@v4
         with:
-          node-version: 23.10.0
-          cache: 'npm'
+          node-version: lts/*
+          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build
         run: npm run build
 
+      # ---------- GitHub Pages ----------
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: ./dist
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Install rsync & ssh-client
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y rsync openssh-client
-
+      # ---------- ProISP deploy ----------
       - name: Configure SSH
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.PROISP_SSH_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan ssh.chaege3vl.service.one >> ~/.ssh/known_hosts
+          ssh-keyscan "${{ secrets.PROISP_HOST }}" >> ~/.ssh/known_hosts
 
       - name: Deploy via rsync
         run: |
-          rsync -avz \
-          -e "ssh -i ~/.ssh/id_ed25519" \
-          dist/ \
-          "${{ secrets.PROISP_USER}}@${{ secrets.PROISP_HOST }}:${{ secrets.PROISP_DIR }}"
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/id_ed25519" \
+            dist/ \
+            "${{ secrets.PROISP_USER }}@${{ secrets.PROISP_HOST }}:${{ secrets.PROISP_DIR }}"

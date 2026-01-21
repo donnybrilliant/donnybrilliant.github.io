@@ -1,0 +1,372 @@
+/* ============================================
+   ANIMATIONS.CSS - Keyframes & Animation Utilities
+   ============================================ */
+
+/* === KEYFRAMES === */
+
+/* Blink animation for cursor */
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Spin animation for loading */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fade in animation */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scale in animation */
+@keyframes scale-in {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Slide up animation */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Accordion animations */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* Typewriter animation */
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+/* === ANIMATION UTILITIES === */
+
+/* Blink */
+.animate-blink {
+  animation: blink 1s linear infinite;
+}
+
+/* Spin */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Fade in */
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Scale in */
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out forwards;
+}
+
+/* Slide up */
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out forwards;
+}
+
+/* Accordion */
+.animate-accordion-down {
+  animation: accordion-down 0.2s ease-out;
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.2s ease-out;
+}
+
+/* Pulse */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Bounce */
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* None - disable animations */
+.animate-none {
+  animation: none;
+}
+
+/* === ANIMATION DELAYS === */
+.delay-75 { animation-delay: 75ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-1000 { animation-delay: 1000ms; }
+
+/* === ANIMATION DURATIONS === */
+.duration-75 { animation-duration: 75ms; }
+.duration-100 { animation-duration: 100ms; }
+.duration-150 { animation-duration: 150ms; }
+.duration-200 { animation-duration: 200ms; }
+.duration-300 { animation-duration: 300ms; }
+.duration-500 { animation-duration: 500ms; }
+.duration-700 { animation-duration: 700ms; }
+.duration-1000 { animation-duration: 1000ms; }
+
+/* === ANIMATION FILL MODES === */
+.fill-forwards { animation-fill-mode: forwards; }
+.fill-backwards { animation-fill-mode: backwards; }
+.fill-both { animation-fill-mode: both; }
+.fill-none { animation-fill-mode: none; }
+
+/* === ANIMATION ITERATION COUNT === */
+.iteration-once { animation-iteration-count: 1; }
+.iteration-infinite { animation-iteration-count: infinite; }
+
+/* === INTERACTIVE SCALE EFFECTS (replaces Framer Motion hover/tap) === */
+
+/* Base interactive scale - apply to buttons, links, cards */
+.hover-scale {
+  transition: transform 0.15s ease-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-scale:active {
+  transform: scale(0.95);
+}
+
+/* Larger scale for icons */
+.hover-scale-lg {
+  transition: transform 0.15s ease-out;
+}
+
+.hover-scale-lg:hover {
+  transform: scale(1.1);
+}
+
+.hover-scale-lg:active {
+  transform: scale(0.95);
+}
+
+/* Extra large scale for small interactive elements */
+.hover-scale-xl {
+  transition: transform 0.15s ease-out;
+}
+
+.hover-scale-xl:hover {
+  transform: scale(1.2);
+}
+
+.hover-scale-xl:active {
+  transform: scale(0.9);
+}
+
+/* Scale with rotation (for tech icons) */
+.hover-scale-rotate {
+  transition: transform 0.15s ease-out;
+}
+
+.hover-scale-rotate:hover {
+  transform: scale(1.2) rotate(5deg);
+}
+
+/* Subtle scale for buttons */
+.hover-scale-subtle {
+  transition: transform 0.15s ease-out;
+}
+
+.hover-scale-subtle:hover {
+  transform: scale(1.02);
+}
+
+.hover-scale-subtle:active {
+  transform: scale(0.98);
+}
+
+/* === SCROLL-TRIGGERED ANIMATIONS (CSS Scroll-Driven Animations) === */
+
+/* Fade in from bottom on scroll into view */
+@keyframes view-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in from left */
+@keyframes view-fade-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Simple fade in */
+@keyframes view-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Scroll-triggered animation classes */
+.animate-on-scroll {
+  animation: view-fade-up linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 30%;
+}
+
+.animate-on-scroll-left {
+  animation: view-fade-left linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 30%;
+}
+
+.animate-on-scroll-fade {
+  animation: view-fade-in linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 20%;
+}
+
+/* Staggered animation-range for scroll-driven animations
+   Each class starts the animation progressively later in the scroll range */
+.animate-stagger-1 { animation-range: entry 0% entry 30%; }
+.animate-stagger-2 { animation-range: entry 3% entry 33%; }
+.animate-stagger-3 { animation-range: entry 6% entry 36%; }
+.animate-stagger-4 { animation-range: entry 9% entry 39%; }
+.animate-stagger-5 { animation-range: entry 12% entry 42%; }
+.animate-stagger-6 { animation-range: entry 15% entry 45%; }
+
+/* Time-based stagger delays (for non-scroll animations like animate-fade-in) */
+.delay-stagger-1 { animation-delay: 0ms; }
+.delay-stagger-2 { animation-delay: 50ms; }
+.delay-stagger-3 { animation-delay: 100ms; }
+.delay-stagger-4 { animation-delay: 150ms; }
+.delay-stagger-5 { animation-delay: 200ms; }
+.delay-stagger-6 { animation-delay: 250ms; }
+
+/* Terminal line animation */
+@keyframes terminal-line-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-terminal-line {
+  animation: terminal-line-in 0.1s ease-out forwards;
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  .animate-blink,
+  .animate-spin,
+  .animate-fade-in,
+  .animate-scale-in,
+  .animate-slide-up,
+  .animate-accordion-down,
+  .animate-accordion-up,
+  .animate-pulse,
+  .animate-bounce,
+  .animate-on-scroll,
+  .animate-on-scroll-left,
+  .animate-on-scroll-fade,
+  .animate-terminal-line {
+    animation: none;
+  }
+  
+  .hover-scale,
+  .hover-scale-lg,
+  .hover-scale-xl,
+  .hover-scale-rotate,
+  .hover-scale-subtle {
+    transition: none;
+  }
+}
+

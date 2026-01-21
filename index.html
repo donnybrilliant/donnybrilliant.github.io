@@ -3,364 +3,88 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hi, my name is Daniel. I am a web developer. Check out my fun portfolio_">
-  <title>Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <!-- Content Security Policy for enhanced security -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data: https:;
+    font-src 'self' data:;
+    connect-src 'self' https://api.github.com https://packagejson.onrender.com https://api.iconify.design https://api.unisvg.com https://api.simplesvg.com;
+    base-uri 'self';
+    form-action 'self';
+    upgrade-insecure-requests;
+  " />
+
+  <!-- Primary Meta Tags -->
+  <title>vierweb.no</title>
+  <meta name="title" content="vierweb.no" />
+  <meta name="description"
+    content="Full-stack web developer crafting modern web experiences with React, TypeScript, Node.js, and Go. Explore my projects including VSCode extensions, terminal games, and open-source tools." />
+  <meta name="author" content="Daniel Vier" />
+  <meta name="keywords"
+    content="Daniel Vier, web developer, full-stack developer, React, TypeScript, Node.js, Go, portfolio, vierweb" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="English" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://vierweb.no/" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" href="/favicon.svg" />
+
+  <!-- Preconnect to Iconify API for faster icon loading -->
+  <link rel="preconnect" href="https://api.iconify.design" crossorigin />
+  <link rel="dns-prefetch" href="https://api.iconify.design" />
+
+  <!-- Theme Color for Mobile Browsers (matches navbar/footer, updated dynamically by JS) -->
+  <meta name="theme-color" content="#212631" />
+  <meta name="msapplication-TileColor" content="#212631" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vierweb.no/" />
+  <meta property="og:title" content="vierweb.no" />
+  <meta property="og:description"
+    content="Full-stack web developer crafting modern web experiences with React, TypeScript, Node.js, and Go. Explore my projects including VSCode extensions, terminal games, and open-source tools." />
+  <meta property="og:image" content="https://vierweb.no/avatar.svg" />
+  <meta property="og:site_name" content="vierweb.no" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://vierweb.no/" />
+  <meta name="twitter:title" content="vierweb.no" />
+  <meta name="twitter:description"
+    content="Full-stack web developer crafting modern web experiences with React, TypeScript, Node.js, and Go. Explore my projects including VSCode extensions, terminal games, and open-source tools." />
+  <meta name="twitter:image" content="https://vierweb.no/avatar.svg" />
+  <!-- <meta name="twitter:site" content="@your_twitter_handle" /> -->
+  <!-- <meta name="twitter:creator" content="@your_twitter_handle" /> -->
+
+  <!-- Structured Data for SEO (helps Google understand your page) -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Daniel Vier",
+      "url": "https://vierweb.no",
+      "jobTitle": "Full-Stack Web Developer",
+      "sameAs": [
+        "https://github.com/donnybrilliant",
+        "https://www.linkedin.com/in/daniel-vier",
+        "https://www.npmjs.com/org/vierweb"
+      ],
+      "knowsAbout": ["React", "TypeScript", "Node.js", "Go", "Web Development"]
+    }
+  </script>
 </head>
 
 <body>
-  <header>
-    <nav>
-      <ul id="navigation">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-    <button id="nav-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Toggle Navigation Menu">
-      <i id="nav-icon-bars" class="fa-solid fa-bars"></i>
-      <i id="nav-icon-close" class="fa-solid fa-close"></i>
-    </button>
-
-  </header>
-
-  <main>
-    <section id="home">
-      <div>
-        <h1>Hello World!</h1>
-        <p id="typewriter"></p>
-      </div>
-      <img id="avatar" src="./assets/avatars/avatar.svg" alt="Daniel's Avatar">
-
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <p>
-        Check out the projects I've made as part of my developer journey.
-      </p>
-
-      <ul class="cards-container">
-
-        <li class="project-card">
-          <h3>INSTALL.SH</h3>
-          <img src="./assets/screenshots/install-sh.webp" alt="Screenshot of Install.sh" />
-          <div class="project-info">
-            <p>AUTOMATED MAC SETUP
-              <br />
-              <span>
-                Script that installs all the necessary tools for a fresh Mac setup.
-              </span>
-            </p>
-            <div>
-              <a href="https://github.com/donnybrilliant/install.sh" target="_blank" aria-label="GitHub">
-                <i class="fa-brands fa-github"></i>
-              </a>
-            </div>
-          </div>
-        </li>
-
-        <li class="project-card">
-          <h3>CONSOLIDATE</h3>
-          <img src="./assets/screenshots/consolidate.webp" alt="Screenshot of Consolidate" />
-          <div class="project-info">
-            <p>VSCODE EXTENSION
-              <br />
-              <span>
-                VSCode extension for consolidating multiple files into one.
-              </span>
-            </p>
-            <div>
-              <a href="https://github.com/donnybrilliant/consolidate" target="_blank" aria-label="GitHub">
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a href="https://marketplace.visualstudio.com/items?itemName=Vierweb.consolidate" target="_blank"
-                aria-label="Deployment">
-                <i class="fa-solid fa-globe"></i>
-              </a>
-            </div>
-          </div>
-        </li>
-
-        <li class="project-card">
-          <h3>PACKAGE.JSON</h3>
-          <img src="./assets/screenshots/package-json.webp" alt="Screenshot of Package.json" />
-          <div class="project-info">
-            <p>TOOL
-              <br />
-              <span>
-                A tool for listing all dependencies used in my GitHub repositories.
-              </span>
-            </p>
-            <div>
-              <a href="https://github.com/donnybrilliant/packagejson" target="_blank" aria-label="GitHub">
-                <i class="fa-brands fa-github"></i>
-              </a>
-            </div>
-          </div>
-        </li>
-
-        <li class="project-card">
-          <h3>MERCHANDIZER</h3>
-          <img src="./assets/screenshots/merchandizer.webp" alt="Screenshot of Merchandizer" />
-          <div class="project-info">
-            <p>BACKEND PROJECT EXAM
-              <br />
-              <span>
-                Backend for an inventory management system for touring artists.
-              </span>
-            </p>
-            <div>
-              <a href="https://github.com/donnybrilliant/merchandizer" target="_blank" aria-label="GitHub">
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a href="https://merchandizer.onrender.com/" target="_blank" aria-label="Deployment">
-                <i class="fa-solid fa-globe"></i>
-              </a>
-            </div>
-          </div>
-        </li>
-
-        <li class="project-card">
-          <h3>Project Exam 2</h3>
-          <img src="./assets/screenshots/project-exam-2.webp" alt="Screenshot of Holidaze" />
-          <div class="project-info">
-            <p>Holidaze
-              <br />
-              <span>
-                A booking website. Uses OpenAI, Google Maps, Unsplash and Holidaze APIs.
-              </span>
-            </p>
-            <div>
-              <a href="https://github.com/donnybrilliant/project-exam-2" target="_blank" aria-label="GitHub">
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a href="https://project-exam-2-holidaze.netlify.app/" target="_blank" aria-label="Deployment">
-                <i class="fa-solid fa-globe"></i>
-              </a>
-            </div>
-          </div>
-        </li>
-        <li class="project-card">
-          <h3>JavaScript Frameworks</h3>
-          <img src="./assets/screenshots/javascript-frameworks.webp" alt="Screenshot of Shop" />
-          <div class="project-info">
-            <p>Shop
-              <br />
-              <span>
-                An E-Commerce Store. Fun with Styled-Components.
-              </span>
-            </p>
-            <div>
-              <a href="https://github.com/donnybrilliant/javascript-frameworks-ca" target="_blank" aria-label="GitHub">
-                <i class="fa-brands fa-github">
-
-                </i></a>
-              <a href="https://javascript-frameworks-ca.netlify.app/" target="_blank" aria-label="Deployment">
-                <i class="fa-solid fa-globe"></i>
-              </a>
-            </div>
-          </div>
-        </li>
-        <li class="project-card">
-          <h3>Semester Project 2</h3>
-          <img src="./assets/screenshots/semester-project-2.webp" alt="Screenshot of Elementarium" />
-          <div class="project-info">
-            <p>Elementarium
-              <br />
-              <span>
-                A blog about rendering elements in JS. Headless Wordpress.
-              </span>
-            </p>
-            <div>
-              <a href="https://github.com/donnybrilliant/semester-project-2-resit" target="_blank" aria-label="GitHub">
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a href="https://donnybrilliant.github.io/semester-project-2-resit/" target="_blank"
-                aria-label="Deployment">
-                <i class="fa-solid fa-globe"></i>
-              </a>
-            </div>
-          </div>
-        </li>
-
-        <li class="project-card">
-          <h3>Cross Course Project</h3>
-          <img src="./assets/screenshots/cross-course-project.webp" alt="Screenshot of Raindydays" />
-          <div class="project-info">
-            <p>Raindydays
-              <br />
-              <span>
-                A webstore for a raincoat company. Headless Wordpress.
-              </span>
-            </p>
-            <div>
-              <a href="https://github.com/Noroff-FEU-Assignments/cross-course-project-donnybrilliant" target="_blank"
-                aria-label="GitHub">
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a href="https://daniel-vier-cross-course-project.netlify.app/" target="_blank" aria-label="Deployment">
-                <i class="fa-solid fa-globe"></i>
-              </a>
-            </div>
-          </div>
-        </li>
-        <li class="project-card">
-          <h3>WEBSITE</h3>
-          <img src="./assets/screenshots/stavangerkameratene.webp" alt="Screenshot of Merchandizer" />
-          <div class="project-info">
-            <p>STAVANGERKAMERATENE
-              <br />
-              <span>
-                Website for band Stavangerkameraterne
-              </span>
-            </p>
-            <div>
-              <a href="https://stavangerkameratene.no" target="_blank" aria-label="Deployment">
-                <i class="fa-solid fa-globe"></i>
-              </a>
-            </div>
-          </div>
-        </li>
-
-        <li class="project-card">
-          <h3>WEBSITE</h3>
-          <img src="./assets/screenshots/tommy-fredvang.webp" alt="Screenshot of Merchandizer" />
-          <div class="project-info">
-            <p>TOMMY FREDVANG
-              <br />
-              <span>
-                Website for artist Tommy Fredvang
-              </span>
-            </p>
-            <div>
-              <a href="https://tommyfredvang.no" target="_blank" aria-label="Deployment">
-                <i class="fa-solid fa-globe"></i>
-              </a>
-            </div>
-          </div>
-        </li>
-
-        <li class="project-card">
-          <h3>E-COMMERCE STORE</h3>
-          <img src="./assets/screenshots/fru-johnsen.webp" alt="Screenshot of Merchandizer" />
-          <div class="project-info">
-            <p>FRU JOHNSEN
-              <br />
-              <span>
-                Business website for Fru Johnsens Sopp og Nyttevekster
-              </span>
-            </p>
-            <div>
-              <a href="https://frujohnsen.no/" target="_blank" aria-label="Deployment">
-                <i class="fa-solid fa-globe"></i>
-              </a>
-            </div>
-          </div>
-        </li>
-        <li class="project-card">
-          <h3>TERMINAL.SH</h3>
-          <img src="./assets/screenshots/terminal-sh.webp" alt="Screenshot of Merchandizer" />
-          <div class="project-info">
-            <p>"HACKING" GAME
-              <br />
-              <span>
-                Terminal-based, multiplater game inspired by Uplink and Hacknet.
-              </span>
-            </p>
-            <div>
-              <a href="https://github.com/donnybrilliant/terminal.sh" target="_blank" aria-label="GitHub">
-                <i class="fa-brands fa-github"></i>
-              </a>
-            </div>
-          </div>
-        </li>
-      </ul>
-
-
-      <button id="toggle-terminal" aria-expanded="false" class="toggle-btn">
-        <h4 class="button-heading">terminal.sh</h4>
-        <p>Click to open terminal.</p>
-      </button>
-
-
-
-      <div id="terminal"></div>
-      <p class="subtle">ALWAYS A PROJECT IN THE BACK OF MY MIND</p>
-
-    </section>
-
-    <section id="about">
-      <h2>About Me</h2>
-      <p>36 years old. Coming back to my childhood hobby.</p>
-      <ul>
-        <li>Degree in Full Stack Development</li>
-        <li>Bachelors degree in Sociology</li>
-        <li>Loads of developer certifications</li>
-        <li>Worked in a wide area of professions</li>
-      </ul>
-      <div class="icons">
-        <i class="fa-brands fa-react"></i>
-        <i class="fa-brands fa-js-square"></i>
-        <i class="fa-brands fa-html5"></i>
-        <i class="fa-brands fa-css3-alt"></i>
-        <i class="fa-brands fa-sass"></i>
-        <i class="fa-brands fa-bootstrap"></i>
-        <i class="fa-brands fa-figma"></i>
-        <i class="fa-brands fa-linux"></i>
-        <i class="fa-brands fa-node"></i>
-        <i class="fa-brands fa-php"></i>
-        <i class="fa-brands fa-wordpress"></i>
-
-
-
-      </div>
-      <button id="toggle-package-json" aria-expanded="false" class="toggle-btn">
-        <h3 class="button-heading">package.json</h3>
-        <p>Click to view dependencies for all my projects.</p>
-      </button>
-      <pre id="package-json"></pre>
-      <p class="subtle">NEVER STOP LEARNING</p>
-
-    </section>
-    <section id="contact">
-      <h2>Contact Me</h2>
-      <ul>
-        <li>
-          <a href="https://github.com/donnybrilliant" target="_blank">
-            <i class="fa-brands fa-github"></i> GitHub</a>
-        </li>
-        <li>
-          <a href="https://www.vierweb.com" target="_blank">
-            <i class="fa-solid fa-globe"></i> Website
-          </a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/daniel-vier" target="_blank" alt="hello">
-            <i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-        </li>
-        <li>
-          <a href="mailto:daniel.vier@gmail.com">
-            <i class="fa-solid fa-envelope"></i> Email</a>
-        </li>
-      </ul>
-      <p class="subtle">TEST OUT THE THEME SLIDER!</p>
-    </section>
-  </main>
-  <footer>
-    <p>
-      <a href="https://vierweb.no" target="_blank">vierweb.no</a>
-      <span class="copyright">&copy;</span> 2025
-    </p>
-    <label for="theme-slider" class="sr-only">Theme Slider:</label>
-    <input type="range" id="theme-slider" min="0" max="360" value="0">
-  </footer>
-
-  <script type="module" src="/main.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
-
-</html>
 
 </html>
