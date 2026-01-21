@@ -1,6 +1,6 @@
 # Portfolio
 
-![image](https://github.com/donnybrilliant/portfolio/blob/main/assets/screenshots/this.webp)
+![image](https://github.com/donnybrilliant/portfolio/blob/main/public/assets/screenshots/this.webp)
 
 [![Deployment](https://github.com/donnybrilliant/donnybrilliant.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/donnybrilliant/donnybrilliant.github.io/actions/workflows/deploy.yml)
 
