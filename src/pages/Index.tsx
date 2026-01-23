@@ -39,6 +39,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { MondrianGrid } from "@/components/MondrianGrid";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { AnimatedTechIcons } from "@/components/AnimatedTechIcons";
 
 const sectionIds = ["home", "projects", "about", "contact"];
 
@@ -282,18 +283,18 @@ const Index = () => {
         {/* About Section */}
         <section
           id="about"
-          className="section-about min-h-screen py-24 px-6 flex flex-col items-center justify-center gap-8"
+          className="section-about min-h-screen py-24 px-6 flex flex-col items-center justify-center gap-8 relative"
         >
-          <h2 className="font-pixel text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center animate-on-scroll">
+          <h2 className="font-pixel text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center animate-on-scroll relative z-20">
             About Me
           </h2>
 
-          <p className="text-base md:text-lg lg:text-xl max-w-xl text-center">
+          <p className="text-base md:text-lg lg:text-xl max-w-xl text-center relative z-20">
             {calculateAge()} years old. I started with code, took a long detour
             into music, and eventually found my way back to programming.
           </p>
 
-          <ul className="space-y-2 text-center text-base md:text-lg">
+          <ul className="space-y-2 text-center text-base md:text-lg relative z-20">
             <li>
               What started as a childhood hobby turned into a full-stack
               obsession - same curiosity, just with better tools and fewer
@@ -314,7 +315,12 @@ const Index = () => {
             </li>
           </ul>
 
-          <div className="text-center mt-8 animate-on-scroll-fade">
+          {/* Animated Tech Icons Section - Full width and height */}
+          <div className="absolute inset-0 w-full h-full pointer-events-none">
+            <AnimatedTechIcons className="w-full h-full" />
+          </div>
+
+          <div className="text-center mt-8 animate-on-scroll-fade relative z-20">
             <button
               onClick={() => openWindow("terminal")}
               className="font-pixel text-lg px-6 py-3 bg-foreground text-background hover:bg-primary transition-colors cursor-pointer"
@@ -326,7 +332,7 @@ const Index = () => {
             </p>
           </div>
 
-          <p className="subtle mt-8">NEVER STOP LEARNING</p>
+          <p className="subtle mt-8 relative z-20">NEVER STOP LEARNING</p>
         </section>
 
         {/* Contact Section */}
