@@ -124,7 +124,7 @@ export const AnimatedFloatingIcon = ({ tech, index, total, animationMode }: Anim
 
   return (
     <motion.div
-      className="absolute cursor-pointer group"
+      className="absolute cursor-pointer group pointer-events-auto"
       style={{
         left: `${x}%`,
         top: `${y}%`,

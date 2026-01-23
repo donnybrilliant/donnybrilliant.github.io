@@ -73,7 +73,7 @@ export const AnimatedTechIcons = ({ className = "" }: AnimatedTechIconsProps) =>
   }, [chaosActive, iconModes, activeMode]);
 
   return (
-    <div className={`relative w-full h-full overflow-hidden pointer-events-auto ${className}`}>
+    <div className={`relative w-full h-full overflow-hidden ${className}`} style={{ pointerEvents: 'none' }}>
       {/* Animated background gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-background" />
       
@@ -81,7 +81,7 @@ export const AnimatedTechIcons = ({ className = "" }: AnimatedTechIconsProps) =>
       {controlsVisible && <IconRain />}
 
       {/* Floating tech icons - subtle by default */}
-      <div className={`absolute inset-0 transition-opacity duration-500 ${
+      <div className={`absolute inset-0 transition-opacity duration-500 pointer-events-none ${
         controlsVisible ? "opacity-100" : "opacity-30"
       }`}>
         {techIcons.map((tech, index) => (
@@ -102,11 +102,14 @@ export const AnimatedTechIcons = ({ className = "" }: AnimatedTechIconsProps) =>
         }`}
       />
 
-      {/* Toggle button for controls - fixed position above control buttons area */}
-      <div className="absolute bottom-0 left-0 right-0 z-20 px-4 pb-8 md:pb-12">
-        <div className="flex justify-center" style={{ marginBottom: 'calc(3rem + 1.5rem)' }}>
+      {/* Controls container - toggle button and control buttons in same container */}
+      <div className="absolute bottom-0 left-0 right-0 z-30 px-4 pb-8 md:pb-12" style={{ pointerEvents: 'auto' }}>
+        <div className="flex flex-col items-center gap-4">
+          {/* Toggle button - always visible */}
           <motion.button
-            className="px-4 py-2 bg-card/80 backdrop-blur rounded-full border border-border text-sm font-pixel text-foreground hover:bg-card transition-colors flex items-center gap-2"
+            className={`px-4 py-2 bg-card/80 backdrop-blur rounded-full border border-border text-sm font-pixel text-foreground hover:bg-card transition-colors flex items-center gap-2 ${
+              !controlsVisible ? 'mb-4' : ''
+            }`}
             onClick={() => setControlsVisible(!controlsVisible)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -117,19 +120,16 @@ export const AnimatedTechIcons = ({ className = "" }: AnimatedTechIconsProps) =>
             <Icon icon={controlsVisible ? "mdi:eye-off" : "mdi:eye"} className="w-4 h-4" />
             <span className="hidden sm:inline">{controlsVisible ? "Hide Controls" : "Show Controls"}</span>
           </motion.button>
-        </div>
-      </div>
 
-      {/* Control buttons - Single row at bottom */}
-      {controlsVisible && (
-        <motion.div
-          className="absolute bottom-0 left-0 right-0 z-10 px-4 pb-8 md:pb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4">
+          {/* Control buttons - Single row at bottom */}
+          {controlsVisible && (
+            <motion.div
+              className="flex flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4 w-full"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3 }}
+            >
           <AnimatedButton 
             animation="glitch" 
             color="primary"
@@ -239,9 +239,10 @@ export const AnimatedTechIcons = ({ className = "" }: AnimatedTechIconsProps) =>
             <Icon icon="mdi:stop" className="w-4 h-4" />
             <span className="hidden sm:inline">RESET</span>
           </motion.button>
-          </div>
-        </motion.div>
-      )}
+            </motion.div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };
