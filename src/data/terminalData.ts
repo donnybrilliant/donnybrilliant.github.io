@@ -205,6 +205,8 @@ export const getHelpText = (): string => {
     `${COLORS.cyan}  matrix${COLORS.reset}               🔢 Start Matrix animation\n` +
     `${COLORS.cyan}  hack${COLORS.reset}                 🔓 Simulate hacking\n` +
     `${COLORS.cyan}  snake${COLORS.reset}                🐍 Play Snake game\n` +
+    `${COLORS.cyan}  scanlines${COLORS.reset}            📺 Toggle scanlines effect\n` +
+    `${COLORS.cyan}    scanlines [min|mid|max|off]${COLORS.reset}     Set scanlines intensity\n` +
     `${COLORS.magenta}  music${COLORS.reset}               🎵 Now playing`
   );
 };

@@ -415,6 +415,23 @@
   pointer-events: none;
 }
 
+/* Global scanlines effect for entire document */
+body.global-scanlines::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent var(--scanlines-thickness, 2px),
+    var(--scanlines-color-rgba, rgba(0, 0, 0, 0.08)) var(--scanlines-thickness, 2px),
+    var(--scanlines-color-rgba, rgba(0, 0, 0, 0.08)) calc(var(--scanlines-thickness, 2px) * 2)
+  );
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: overlay;
+}
+
 /* === REDUCED MOTION === */
 @media (prefers-reduced-motion: reduce) {
   .animate-blink,

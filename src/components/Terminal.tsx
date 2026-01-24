@@ -24,6 +24,7 @@ import {
   type FileSystemItem,
 } from "@/data/terminalData";
 import { fetchGitHubRepos } from "@/api";
+import { useGlobalScanlines } from "@/hooks/useGlobalScanlines";
 
 // Parse ANSI codes and convert to styled spans
 const parseAnsiToHtml = (text: string): JSX.Element[] => {
@@ -138,6 +139,7 @@ const renderWithLinks = (text: string): JSX.Element => {
 };
 
 export const Terminal = () => {
+  const { scanlinesEnabled, settings, toggleScanlines, updateSettings } = useGlobalScanlines();
   const [fileSystem, setFileSystem] = useState<FileSystemItem>(
     createStaticFileSystem
   );
@@ -796,6 +798,36 @@ export const Terminal = () => {
           startSnake();
           return "";
 
+        case "scanlines": {
+          if (args.length === 0) {
+            // Toggle if no args
+            const wasEnabled = scanlinesEnabled;
+            toggleScanlines();
+            return wasEnabled
+              ? `${COLORS.green}Scanlines disabled${COLORS.reset}`
+              : `${COLORS.green}Scanlines enabled${COLORS.reset}`;
+          }
+          
+          const level = args[0].toLowerCase();
+          
+          if (level === "off") {
+            updateSettings({ enabled: false });
+            return `${COLORS.green}Scanlines disabled${COLORS.reset}`;
+          }
+          
+          if (["min", "mid", "max"].includes(level)) {
+            updateSettings({
+              enabled: true,
+              thickness: level as "min" | "mid" | "max",
+              hardness: level as "min" | "mid" | "max",
+              color: level as "min" | "mid" | "max",
+            });
+            return `${COLORS.green}Scanlines enabled (${level})${COLORS.reset}`;
+          }
+          
+          return `${COLORS.yellow}Usage: scanlines [min|mid|max|off]${COLORS.reset}`;
+        }
+
         case "":
           return "";
 
@@ -807,6 +839,10 @@ export const Terminal = () => {
       currentPath,
       getCurrentDir,
       username,
+      scanlinesEnabled,
+      settings,
+      toggleScanlines,
+      updateSettings,
       startMatrix,
       runHack,
       startSnake,

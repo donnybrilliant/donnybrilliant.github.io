@@ -5,6 +5,7 @@ import NotFound from "@/pages/NotFound";
 import { WindowProvider } from "@/context/WindowContext.tsx";
 import { ThemeProvider } from "@/context/ThemeContext.tsx";
 import { fetchGitHubRepos, fetchPackageData } from "@/api";
+import { useGlobalScanlines } from "@/hooks/useGlobalScanlines";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,6 +29,9 @@ queryClient.prefetchQuery({
 });
 
 const App = () => {
+  // Initialize global scanlines hook - keeps it active even when terminal is closed
+  useGlobalScanlines();
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
