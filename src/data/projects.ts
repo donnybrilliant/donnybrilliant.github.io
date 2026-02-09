@@ -43,6 +43,34 @@ export const projects: ProjectDetails[] = [
       "I was tired of installing everything manually. This project automates the process of setting up a new Mac.",
   },
   {
+    title: "Laelia",
+    subtitle: "Chord Synth",
+    description:
+      "A browser-based chord synth. Chords, strums, arpeggios, harp modes. Add to home screen and pretend it's a real instrument. Inspired by the Orchid from Telepathic Instruments.",
+    imageUrl: "/assets/screenshots/laelia.webp",
+    githubUrl: "https://github.com/donnybrilliant/Laelia",
+    liveUrl: "https://laelia.vierweb.no",
+    primaryLanguage: "TS",
+    techStack: ["React", "Vite", "TypeScript", "Tone.js", "Tailwind", "PWA"],
+    features: [
+      "Keyboard — poly, strum, arp, or harp mode",
+      "Chord buttons — maj, min, dim, sus, extensions (6, m7, M7, 9)",
+      "Rotary dials — volume, sound, FX, key, BPM, voicing",
+      "Sound presets — Piano, Pad, Strings, Organ, Pluck, Bell, Synth, Brass",
+      "Visualizer and installable PWA",
+    ],
+    challenges: [
+      "Web Audio and Tone.js integration",
+      "PWA install flow and audio unlock on mobile",
+    ],
+    solutions: [
+      "Tone.js for synthesis and scheduling",
+      "Add-to-home-screen flow with tap-to-unlock audio",
+    ],
+    reflections:
+      "Built from a teaser idea of the Orchid — no demo, no manual. Just how I pictured a chord synth in the browser.",
+  },
+  {
     title: "Consolidate",
     subtitle: "VSCode Extension",
     description:
