@@ -5,8 +5,10 @@ import { Icon } from "@iconify/react";
 import spinnerIcon from "@iconify-icons/fa6-solid/spinner";
 import { fetchPackageData } from "@/api";
 
+type Section = "dependencies" | "devDependencies";
+
 export const PackageJsonViewer = () => {
-  const [selectedRepo, setSelectedRepo] = useState<string | null>(null);
+  const [section, setSection] = useState<Section>("dependencies");
 
   // Prefetched in App.tsx - data is usually already available
   const { data, isLoading, isError } = useQuery({
@@ -43,54 +45,51 @@ export const PackageJsonViewer = () => {
     );
   }
 
-  const repos = data ? Object.keys(data) : [];
+  const deps = data?.dependencies ?? {};
+  const devDeps = data?.devDependencies ?? {};
+  const current = section === "dependencies" ? deps : devDeps;
+  const isEmpty = Object.keys(current).length === 0;
 
   return (
     <div className="h-full bg-terminal-bg p-4 overflow-auto">
       <div className="mb-4">
         <h3 className="font-pixel text-terminal-text mb-2">
-          Select Repository:
+          Packages from my projects
         </h3>
         <div className="flex flex-wrap gap-2">
-          {repos.map((repo) => (
+          {(["dependencies", "devDependencies"] as const).map((tab) => (
             <motion.button
-              key={repo}
+              key={tab}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() =>
-                setSelectedRepo(selectedRepo === repo ? null : repo)
-              }
+              onClick={() => setSection(tab)}
               className={`px-3 py-1 font-pixel text-xs border transition-colors ${
-                selectedRepo === repo
+                section === tab
                   ? "bg-primary text-primary-foreground border-primary"
                   : "bg-window-header text-window-header-foreground border-window-border hover:bg-primary/20"
               }`}
             >
-              {repo}
+              {tab === "dependencies" ? "Production" : "Development"}
             </motion.button>
           ))}
         </div>
       </div>
 
-      {selectedRepo && data?.[selectedRepo] && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-4"
-        >
-          <pre className="text-terminal-text text-sm overflow-auto">
-            <code>{JSON.stringify(data[selectedRepo], null, 2)}</code>
-          </pre>
-        </motion.div>
-      )}
-
-      {!selectedRepo && (
-        <div className="text-center py-8">
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mt-4"
+      >
+        {isEmpty ? (
           <p className="text-muted-foreground font-pixel text-sm">
-            Click a repository to view its dependencies
+            No packages in this list.
           </p>
-        </div>
-      )}
+        ) : (
+          <pre className="text-terminal-text text-sm overflow-auto">
+            <code>{JSON.stringify(current, null, 2)}</code>
+          </pre>
+        )}
+      </motion.div>
     </div>
   );
 };
