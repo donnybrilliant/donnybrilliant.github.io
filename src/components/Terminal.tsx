@@ -308,18 +308,19 @@ export const Terminal = () => {
 
     const githubFromApi = apiFileSystem.children.find((c) => c.name === "github");
     const projectsFromApi = apiFileSystem.children.find((c) => c.name === "projects");
+    // Same list in both dirs; count once to avoid double-counting
     const count =
-      (githubFromApi?.children?.length ?? 0) + (projectsFromApi?.children?.length ?? 0);
+      githubFromApi?.children?.length ?? projectsFromApi?.children?.length ?? 0;
 
     setFileSystem((prev) => {
       const next = { ...prev, children: [...(prev.children ?? [])] };
       if (githubFromApi) {
         const i = next.children!.findIndex((c) => c.name === "github");
-        if (i >= 0) next.children![i] = githubFromApi as FileSystemItem;
+        if (i >= 0) next.children![i] = githubFromApi;
       }
       if (projectsFromApi) {
         const i = next.children!.findIndex((c) => c.name === "projects");
-        if (i >= 0) next.children![i] = projectsFromApi as FileSystemItem;
+        if (i >= 0) next.children![i] = projectsFromApi;
       }
       return next;
     });

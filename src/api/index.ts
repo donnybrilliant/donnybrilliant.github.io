@@ -1,7 +1,7 @@
 // Centralized API configuration and fetch functions (packagejson API)
-const PACKAGEJSON_BASE =
-  "https://packagejson.onrender.com";
+import type { FileSystemItem } from "@/data/terminalData";
 
+const PACKAGEJSON_BASE = "https://packagejson.onrender.com";
 const PACKAGE_JSON_API = `${PACKAGEJSON_BASE}/package.json`;
 
 // Package JSON types and fetch (aggregated across all repos from packagejson API)
@@ -17,15 +17,7 @@ export const fetchPackageData = async (): Promise<PackageData> => {
 };
 
 // Terminal VFS: GET /files?format=terminal returns a FileSystemItem tree (github + projects from API)
-export interface TerminalFileSystemItem {
-  name: string;
-  type: "file" | "directory";
-  content?: string;
-  url?: string;
-  children?: TerminalFileSystemItem[];
-}
-
-export const fetchTerminalFileSystem = async (): Promise<TerminalFileSystemItem> => {
+export const fetchTerminalFileSystem = async (): Promise<FileSystemItem> => {
   const response = await fetch(`${PACKAGEJSON_BASE}/files?format=terminal`);
   if (!response.ok)
     throw new Error("Failed to fetch terminal file system from packagejson API");
