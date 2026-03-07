@@ -1,39 +1,25 @@
-// Centralized API configuration and fetch functions
+// Centralized API configuration and fetch functions (packagejson API)
+import type { FileSystemItem } from "@/data/terminalData";
 
-export const GITHUB_API_URL =
-  "https://api.github.com/users/donnybrilliant/repos?per_page=100&sort=updated";
+const PACKAGEJSON_BASE = "https://packagejson.onrender.com";
+const PACKAGE_JSON_API = `${PACKAGEJSON_BASE}/package.json`;
 
-export const PACKAGE_JSON_API = "https://packagejson.onrender.com/package.json";
-
-// GitHub Repos types and fetch
-export interface GitHubRepo {
-  name: string;
-  description: string | null;
-  html_url: string;
-  homepage: string | null;
-  language: string | null;
-  topics: string[];
-  stargazers_count: number;
-  fork: boolean;
+// Package JSON types and fetch (aggregated across all repos from packagejson API)
+export interface PackageData {
+  dependencies: Record<string, string>;
+  devDependencies: Record<string, string>;
 }
-
-export const fetchGitHubRepos = async (): Promise<GitHubRepo[]> => {
-  const response = await fetch(GITHUB_API_URL);
-  if (!response.ok) throw new Error("Failed to fetch GitHub repos");
-  return response.json();
-};
-
-// Package JSON types and fetch
-export type PackageData = Record<
-  string,
-  {
-    dependencies?: Record<string, string>;
-    devDependencies?: Record<string, string>;
-  }
->;
 
 export const fetchPackageData = async (): Promise<PackageData> => {
   const response = await fetch(PACKAGE_JSON_API);
   if (!response.ok) throw new Error("Failed to fetch package data");
+  return response.json();
+};
+
+// Terminal VFS: GET /files?format=terminal returns a FileSystemItem tree (github + projects from API)
+export const fetchTerminalFileSystem = async (): Promise<FileSystemItem> => {
+  const response = await fetch(`${PACKAGEJSON_BASE}/files?format=terminal`);
+  if (!response.ok)
+    throw new Error("Failed to fetch terminal file system from packagejson API");
   return response.json();
 };

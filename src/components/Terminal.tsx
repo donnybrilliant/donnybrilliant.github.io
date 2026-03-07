@@ -23,7 +23,7 @@ import {
   funCommands,
   type FileSystemItem,
 } from "@/data/terminalData";
-import { fetchGitHubRepos } from "@/api";
+import { fetchTerminalFileSystem } from "@/api";
 
 // Parse ANSI codes and convert to styled spans
 const parseAnsiToHtml = (text: string): JSX.Element[] => {
@@ -292,76 +292,44 @@ export const Terminal = () => {
     };
   }, []);
 
-  // Fetch GitHub repos with react-query (prefetched in App.tsx)
+  // Fetch terminal file system from packagejson API (prefetched in App.tsx)
   const {
-    data: repos,
+    data: apiFileSystem,
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["github-repos"],
-    queryFn: fetchGitHubRepos,
+    queryKey: ["terminal-files"],
+    queryFn: fetchTerminalFileSystem,
   });
 
-  // Update file system when repos are loaded
+  // Merge API file system (github + projects) with static fs (about, contact, readme, etc.)
   useEffect(() => {
-    if (!repos) return;
+    if (!apiFileSystem?.children) return;
 
-    const repoItems: FileSystemItem[] = repos
-      .filter((repo) => !repo.fork)
-      .map((repo) => ({
-        name: repo.name,
-        type: "directory" as const,
-        children: [
-          {
-            name: "README.md",
-            type: "file" as const,
-            content: `# ${repo.name}\n\n${
-              repo.description || "No description available."
-            }\n\n🔗 ${repo.html_url}${
-              repo.homepage ? `\n🌐 ${repo.homepage}` : ""
-            }\n\n${repo.language ? `📝 Language: ${repo.language}` : ""}${
-              repo.topics.length > 0
-                ? `\n🏷️  Topics: ${repo.topics.join(", ")}`
-                : ""
-            }\n⭐ Stars: ${repo.stargazers_count}`,
-          },
-          {
-            name: "open.txt",
-            type: "file" as const,
-            content: repo.html_url,
-            url: repo.html_url,
-          },
-          ...(repo.homepage
-            ? [
-                {
-                  name: "website.txt",
-                  type: "file" as const,
-                  content: repo.homepage,
-                  url: repo.homepage,
-                },
-              ]
-            : []),
-        ],
-      }));
+    const githubFromApi = apiFileSystem.children.find((c) => c.name === "github");
+    const projectsFromApi = apiFileSystem.children.find((c) => c.name === "projects");
+    // Same list in both dirs; count once to avoid double-counting
+    const count =
+      githubFromApi?.children?.length ?? projectsFromApi?.children?.length ?? 0;
 
     setFileSystem((prev) => {
-      const newFs = { ...prev };
-      const githubDir = newFs.children?.find((c) => c.name === "github");
-      const projectsDir = newFs.children?.find((c) => c.name === "projects");
-      if (githubDir) {
-        githubDir.children = repoItems;
+      const next = { ...prev, children: [...(prev.children ?? [])] };
+      if (githubFromApi) {
+        const i = next.children!.findIndex((c) => c.name === "github");
+        if (i >= 0) next.children![i] = githubFromApi;
       }
-      if (projectsDir) {
-        projectsDir.children = repoItems;
+      if (projectsFromApi) {
+        const i = next.children!.findIndex((c) => c.name === "projects");
+        if (i >= 0) next.children![i] = projectsFromApi;
       }
-      return newFs;
+      return next;
     });
 
     setHistory((prev) => [
-      ...prev.slice(0, -1), // Remove "Loading..." message
+      ...prev.slice(0, -1),
       {
         type: "output",
-        text: `${COLORS.green}✓ Loaded ${repoItems.length} GitHub repositories!${COLORS.reset}`,
+        text: `${COLORS.green}✓ Loaded file system (${count} projects)!${COLORS.reset}`,
         isHtml: true,
       },
       {
@@ -370,7 +338,7 @@ export const Terminal = () => {
         isHtml: true,
       },
     ]);
-  }, [repos]);
+  }, [apiFileSystem]);
 
   // Handle fetch error
   useEffect(() => {
@@ -380,7 +348,7 @@ export const Terminal = () => {
       ...prev.slice(0, -1),
       {
         type: "output",
-        text: `${COLORS.yellow}⚠ Could not load GitHub repos. Using cached data.${COLORS.reset}`,
+        text: `${COLORS.yellow}⚠ Could not load file system. Using cached data.${COLORS.reset}`,
         isHtml: true,
       },
       { type: "output", text: "Type 'help' for available commands.\n" },

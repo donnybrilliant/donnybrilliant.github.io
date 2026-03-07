@@ -4,7 +4,7 @@ import Index from "@/pages/Index";
 import NotFound from "@/pages/NotFound";
 import { WindowProvider } from "@/context/WindowContext.tsx";
 import { ThemeProvider } from "@/context/ThemeContext.tsx";
-import { fetchGitHubRepos, fetchPackageData } from "@/api";
+import { fetchPackageData, fetchTerminalFileSystem } from "@/api";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,8 +18,8 @@ const queryClient = new QueryClient({
 
 // Prefetch data on app load - runs immediately
 queryClient.prefetchQuery({
-  queryKey: ["github-repos"],
-  queryFn: fetchGitHubRepos,
+  queryKey: ["terminal-files"],
+  queryFn: fetchTerminalFileSystem,
 });
 
 queryClient.prefetchQuery({
